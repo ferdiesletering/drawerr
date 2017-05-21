@@ -1,0 +1,10 @@
+{
+  "name": "drawerr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ferdie Sletering",
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "^7.0.0"
+  }
+}

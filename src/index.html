@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Drawerr</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="css/drawerr.css">
+    <!-- color scheme https://material.io/color/#!/?view.left=0&view.right=0&primary.color=303F9F -->
+    <style>
+       body {
+           font-family: 'Roboto', sans-serif;
+       }
+
+        header {
+            height:50px;
+            display:flex;
+            padding:0 15px;
+            justify-content:space-between;
+            align-items:center;
+            background:#303f9f;
+            color:#fff;
+
+        }
+
+        header ul {
+            display:flex;
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+
+        header li {
+            height:50px;
+            padding:0 .5em;
+            line-height:50px;
+        }
+
+        button {
+            background:none;
+            border:none;
+            color:#fff;
+        }
+
+        .material-icons {
+            line-height:50px;
+        }
+
+       img {
+            max-width:auto;
+            height:50px;
+        }
+
+        main {
+            padding:15px;
+            line-height:1.5rem;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <ul>
+        <li>
+            <button class="toggleDrawerr"><i class="material-icons">menu</i></button>
+        </li>
+        <li>
+            <img src="images/logo.png">
+        </li>
+        <li>Movies</li>
+        <li>Special offer</li>
+        <li>About us</li>
+    </ul>
+</header>
+<main>
+    <h1>Movies</h1>
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+</main>
+<nav id="drawerr">
+    <ul>
+        <li>
+            <div class="drawerr__title">Retro Rental</div>
+            <ul>
+                <li>
+                    <a href="#">
+                        Comedy
+                        <ul>
+                            <li>Rush hour</li>
+                            <li>Lethal wapon</li>
+                        </ul>
+                    </a>
+                </li>
+                <li><a href="#">Thriller</a></li>
+                <li><a href="#">Horror</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="drawerr__title">Retro cinema</div>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Availability</a></li>
+                <li><a href="#">Service</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="drawerr__title">Retro on-demand</div>
+            <ul>
+                <li><a href="#">How to install</a></li>
+                <li><a href="#">How to buy credits</a></li>
+                <li><a href="#">Installation service</a></li>
+                <li><a href="#">Problems with service?</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="drawerr__title">About Retro</div>
+            <ul>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Complaints</a></li>
+            </ul>
+        </li>
+        <li>
+            Where hiring!
+        </li>
+        <li>
+            Open mon-sun 16.00 - 0.00
+        </li>
+    </ul>
+<nav>
+<script src="js/drawerr.js"></script>
+<script>
+    new Drawerr( '#drawerr', '.toggleDrawerr' ).init();
+</script>
+</body>
+</html>
