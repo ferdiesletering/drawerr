@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-    <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
-    <link rel="stylesheet" href="css/drawerr.css">
+    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="src/css/drawerr.css">
     <!-- color scheme https://material.io/color/#!/?view.left=0&view.right=0&primary.color=303F9F -->
     <style>
        body {
@@ -70,7 +70,7 @@
             <button class="toggleDrawerr"><i class="material-icons">menu</i></button>
         </li>
         <li>
-            <img src="images/logo.png">
+            <img src="src/images/logo.png">
         </li>
         <li>Movies</li>
         <li>Special offer</li>
@@ -89,11 +89,11 @@
                 <li>
                     <a href="#">
                         Comedy
-                        <ul>
-                            <li>Rush hour</li>
-                            <li>Lethal wapon</li>
-                        </ul>
                     </a>
+                    <ul>
+                        <li><a href="#">Rush hour</a></li>
+                        <li><a href="#">Lethal wapon</a></li>
+                    </ul>
                 </li>
                 <li><a href="#">Thriller</a></li>
                 <li><a href="#">Horror</a></li>
@@ -102,7 +102,7 @@
         <li>
             <div class="drawerr__title">Retro cinema</div>
             <ul>
-                <li><a href="#">About</a></li>
+                <li><a class="active" href="#">About</a></li>
                 <li><a href="#">Pricing</a></li>
                 <li><a href="#">Availability</a></li>
                 <li><a href="#">Service</a></li>
@@ -132,7 +132,7 @@
         </li>
     </ul>
 <nav>
-<script src="js/drawerr.js"></script>
+<script src="src/js/drawerr.js"></script>
 <script>
     new Drawerr( '#drawerr', '.toggleDrawerr' ).init();
 </script>
