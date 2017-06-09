@@ -1,0 +1,12 @@
+$drawerr-primary-color:#35D8B3 !default;
+$drawerr-secondary-color:#e3e3e3 !default;
+$drawerr-navbar-height: 80px !default;
+$drawerr-shadow-depth: 10px !default;
+$drawerr-width: 300px !default;
+
+// Scrollbar
+$drawerr-scrollbar: 3px !default;
+$drawerr-scrollbar-thumb: $drawerr-primary-color !default;
+$drawerr-scrollbar-track-color: $drawerr-secondary-color!default;
+
+$drawerr-translate: $drawerr-width + $drawerr-shadow-depth;

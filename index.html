@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
-    <link rel="stylesheet" href="src/css/drawerr.css">
+    <link rel="stylesheet" href="dist/drawerrr.css">
     <!-- color scheme https://material.io/color/#!/?view.left=0&view.right=0&primary.color=303F9F -->
     <style>
        body {
@@ -18,12 +18,14 @@
        }
 
         header {
+            position: fixed;
+            width:100%;
             height:80px;
             display:flex;
             padding:0 15px;
             justify-content:space-between;
             align-items:center;
-            background:#303f9f;
+            background: linear-gradient(45deg,#64AFC0 0,#35D8B3 100%);
             color:#fff;
 
         }
@@ -57,7 +59,7 @@
         }
 
         main {
-            padding:15px;
+            padding:80px 15px 15px;
             line-height:1.5rem;
         }
 
@@ -70,7 +72,7 @@
             <button class="toggleDrawer"><i class="material-icons">menu</i></button>
         </li>
         <li>
-            <img src="src/images/logo.png">
+            <img src="src/images/logo.svg">
         </li>
         <li>Harum</li>
         <li>Sed partem</li>

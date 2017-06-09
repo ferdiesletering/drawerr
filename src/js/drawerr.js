@@ -2,14 +2,12 @@ var Drawerr = function(args) {
 	this.drawerr = document.querySelector(args.drawerr);
 	this.toggleBtn = document.querySelector(args.toggleBtn);
 	this.navbar = document.querySelector(args.navbar);
-	this.navbarHeight = this.navbar.offsetHeight;
-	this.openClass = 'drawer--open';
+	this.openClass = 'drawerr--open';
 };
 
 Drawerr.prototype = function() {
 	var init = function() {
 		this.drawerr.classList.add('drawerr');
-		this.drawerr.style.top = this.navbarHeight + 'px';
 		events( this );
 	},
 
@@ -37,7 +35,7 @@ Drawerr.prototype = function() {
 		if( !self.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(self.openClass)) {
 			toggleClass(self);
 		}
-	};
+	}
 
 	return {
 		init:init,
