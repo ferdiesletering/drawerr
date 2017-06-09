@@ -1,12 +1,15 @@
-var Drawerr = function(drawer, toggleBtn) {
-	this.drawer = document.querySelector(drawer);
-	this.toggleBtn = document.querySelector(toggleBtn);
-	this.openClass = 'drawerr--open';
+var Drawerr = function(args) {
+	this.drawerr = document.querySelector(args.drawerr);
+	this.toggleBtn = document.querySelector(args.toggleBtn);
+	this.navbar = document.querySelector(args.navbar);
+	this.navbarHeight = this.navbar.offsetHeight;
+	this.openClass = 'drawer--open';
 };
 
 Drawerr.prototype = function() {
 	var init = function() {
-		this.drawer.classList.add('drawerr');
+		this.drawerr.classList.add('drawerr');
+		this.drawerr.style.top = this.navbarHeight + 'px';
 		events( this );
 	},
 
@@ -21,17 +24,17 @@ Drawerr.prototype = function() {
 	},
 
 	toggleClass = function(self) {
-		if( self.drawer.classList.contains(self.openClass)) {
-			return self.drawer.classList.remove(self.openClass);
+		if( self.drawerr.classList.contains(self.openClass)) {
+			return self.drawerr.classList.remove(self.openClass);
 		} 
 		
-		self.drawer.classList.add(self.openClass);
+		self.drawerr.classList.add(self.openClass);
 	},
 
 	bodyClick = function(e,self) {
-		if( self.toggleBtn.contains( e.target ) ) return;
+		if( self.toggleBtn.contains(e.target )) return;
 
-		if( !self.drawer.contains(e.target) && document.querySelector('.drawerr').classList.contains( self.openClass ) ) {
+		if( !self.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(self.openClass)) {
 			toggleClass(self);
 		}
 	};

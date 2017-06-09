@@ -18,7 +18,7 @@
        }
 
         header {
-            height:50px;
+            height:80px;
             display:flex;
             padding:0 15px;
             justify-content:space-between;
@@ -67,7 +67,7 @@
 <header>
     <ul>
         <li>
-            <button class="toggleDrawerr"><i class="material-icons">menu</i></button>
+            <button class="toggleDrawer"><i class="material-icons">menu</i></button>
         </li>
         <li>
             <img src="src/images/logo.png">
@@ -99,7 +99,7 @@
 
     Sed saepe similique et. Quo an ignota viderer invidunt, omnium commodo detracto his ad. Legere expetenda intellegebat no usu, eruditi efficiantur pro ea. Ius tale abhorreant no, pri cetero voluptua democritum ei, nam eligendi pertinacia ei. Pro in iriure virtute conceptam, id quo voluptua sententiae. Te tale elitr appetere mei, iracundia eloquentiam has in. Et debet congue sapientem eum.
 </main>
-<nav id="drawerr">
+<nav id="drawer">
     <ul>
         <li>
             gloriatur
@@ -140,7 +140,13 @@
 <nav>
 <script src="src/js/drawerr.js"></script>
 <script>
-    new Drawerr( '#drawerr', '.toggleDrawerr' ).init();
+    var args = {
+        drawerr: '#drawer',
+        toggleBtn: '.toggleDrawer',
+        navbar: 'header'
+    };
+
+    new Drawerr( args ).init();
 </script>
 </body>
 </html>
