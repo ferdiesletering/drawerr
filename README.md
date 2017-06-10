@@ -1,4 +1,8 @@
 # Drawerr
 A lightweight vanilla javascript drawer with css transform animation
 
-![alt text](https://cloud.githubusercontent.com/assets/6705443/26287096/63b5fb4a-3e74-11e7-8880-b8eff226a815.gif "Drawerr preview")
+Features:
+- Overridable sass variables
+- Supports up to 4 levels deep
+
+![alt text](https://user-images.githubusercontent.com/6705443/27006307-d5386b6a-4e30-11e7-9e0b-4b236a6ceab2.gif "Drawerr preview")

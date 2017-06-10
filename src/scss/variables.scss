@@ -1,12 +1,18 @@
 $drawerr-primary-color:#35D8B3 !default;
 $drawerr-secondary-color:#e3e3e3 !default;
+$drawerr-active-color:$drawerr-primary-color !default;
+$drawerr-text-color: #000 !default;
 $drawerr-navbar-height: 80px !default;
 $drawerr-shadow-depth: 10px !default;
 $drawerr-width: 300px !default;
 
 // Scrollbar
 $drawerr-scrollbar: 3px !default;
-$drawerr-scrollbar-thumb: $drawerr-primary-color !default;
+$drawerr-scrollbar-thumb: darken($drawerr-secondary-color, 50%) !default;
 $drawerr-scrollbar-track-color: $drawerr-secondary-color!default;
 
+$drawerr-padding: 25px !default;
+$drawerr-item-height:55px !default;
+
+$drawerr-padding-half: $drawerr-padding / 2;
 $drawerr-translate: $drawerr-width + $drawerr-shadow-depth;
