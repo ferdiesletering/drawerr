@@ -1,16 +1,15 @@
 {
   "name": "drawerr",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "Ferdie Sletering",
+  "description": "Menu drawer with css translate and vanilla js",
+  "repository": "https://github.com/s-ferdie/drawerr",
   "license": "MIT",
-  "dependencies": {
-    "normalize.css": "^7.0.0"
-  },
   "scripts": {
     "build": "webpack --watch"
   },
   "devDependencies": {
+    "normalize.css": "^7.0.0",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.0",
     "node-sass": "^4.5.3",
