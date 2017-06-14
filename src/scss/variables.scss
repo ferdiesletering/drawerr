@@ -11,10 +11,14 @@ $drawerr-scrollbar: 4px !default;
 $drawerr-scrollbar-thumb: darken($drawerr-secondary-color, 50%) !default;
 $drawerr-scrollbar-track-color: $drawerr-secondary-color!default;
 
+// Menu item
 $drawerr-padding: 25px !default;
 $drawerr-item-height:55px !default;
 
 $drawerr-padding-half: $drawerr-padding / 2;
 $drawerr-translate: $drawerr-width + $drawerr-shadow-depth;
 
+// Hamburger
+$drawerr-hamburger-width:40px !default;
+$drawerr-hamburger-height:30px !default;
 
