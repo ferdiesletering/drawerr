@@ -1,5 +1,5 @@
 class Drawerr {
-	constructor() {
+	constructor(args) {
 		this.drawerr = document.querySelector(args.drawerr);
 		this.toggleBtn = document.querySelector(args.toggleBtn);
 		this.navbar = document.querySelector(args.navbar);
