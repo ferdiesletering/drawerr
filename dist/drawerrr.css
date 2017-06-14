@@ -62,8 +62,8 @@
     scrollbar-face-color: rgba(0, 0, 0, 0.07);
     scrollbar-track-color: rgba(0, 0, 0, 0.05); }
   .drawerr::-webkit-scrollbar {
-    width: 3px;
-    height: 3px; }
+    width: 4px;
+    height: 4px; }
   .drawerr::-webkit-scrollbar-thumb {
     background: #646464;
     border-radius: 1em;
@@ -81,7 +81,8 @@
   align-self: center;
   width: 40px;
   height: 30px;
-  padding: 0; }
+  padding: 0;
+  outline: none; }
   .drawerr-btn span {
     width: inherit;
     height: 5px;
