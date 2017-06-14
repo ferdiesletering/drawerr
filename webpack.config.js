@@ -15,7 +15,16 @@ module.exports = {
   path: path.resolve( __dirname, 'dist' )
  },
  module: {
-	 rules: [{
+	 rules: [
+		 {
+			 test: /\.js$/,
+			 exclude: /node_modules/,
+			 loader: 'babel-loader',
+			 options: {
+				 presets: ['es2015']
+			 }
+		 },
+	 	{
 		 test: /\.scss$/,
 		 use: extractSass.extract({
 			 use: [{
