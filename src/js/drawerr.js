@@ -40,7 +40,7 @@ class Drawerr {
 		if( this.toggleBtn.contains(e.target )) return;
 
 		if( !this.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(this.drawerOpenClass)) {
-			toggleDrawer();
+			this.toggleDrawer();
 
 		}
 	}
