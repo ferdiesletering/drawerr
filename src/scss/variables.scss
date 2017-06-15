@@ -1,6 +1,4 @@
-$drawerr-primary-color:#35D8B3 !default;
-$drawerr-secondary-color:#e3e3e3 !default;
-$drawerr-active-color:$drawerr-primary-color !default;
+$drawerr-bg: #eee !default;
 $drawerr-text-color: #000 !default;
 $drawerr-navbar-height: 80px !default;
 $drawerr-shadow-depth: 10px !default;
@@ -8,12 +6,15 @@ $drawerr-width: 300px !default;
 
 // Scrollbar
 $drawerr-scrollbar: 4px !default;
-$drawerr-scrollbar-thumb: darken($drawerr-secondary-color, 50%) !default;
-$drawerr-scrollbar-track-color: $drawerr-secondary-color!default;
+$drawerr-scrollbar-thumb: darken(#e3e3e3, 50%) !default;
+$drawerr-scrollbar-track-color: #e3e3e3 !default;
 
-// Menu item
+// Menu items
 $drawerr-padding: 25px !default;
 $drawerr-item-height:55px !default;
+$drawerr-item-border-bottom-color: grey !default;
+$drawerr-item-active-before: #35D8B3 !default;
+$drawerr-item-active-color: #35D8B3 !default;
 
 $drawerr-padding-half: $drawerr-padding / 2;
 $drawerr-translate: $drawerr-width + $drawerr-shadow-depth;
@@ -21,4 +22,5 @@ $drawerr-translate: $drawerr-width + $drawerr-shadow-depth;
 // Hamburger
 $drawerr-hamburger-width:40px !default;
 $drawerr-hamburger-height:30px !default;
+$drawerr-hamburger-bars-bg: #fff !default;
 

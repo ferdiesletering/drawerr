@@ -8,9 +8,15 @@ class Drawerr {
 	}
 
 	init() {
+		this.drawerr.classList.remove('drawerr--init');
 		this.drawerr.classList.add('drawerr');
 		this.toggleBtn.classList.add('drawerr-btn');
+		this.drawerrOffsetTop();
 		this.events( this );
+	}
+
+	drawerrOffsetTop() {
+		this.drawerr.style.top = this.navbar.offsetHeight + 'px';
 	}
 
 	events() {
