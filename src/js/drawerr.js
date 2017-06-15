@@ -12,7 +12,10 @@ class Drawerr {
 		this.drawerr.classList.add('drawerr');
 		this.toggleBtn.classList.add('drawerr-btn');
 		this.drawerrOffsetTop();
-		this.events( this );
+
+		window.onload = () => {
+			this.events();
+		}
 	}
 
 	drawerrOffsetTop() {
@@ -20,6 +23,7 @@ class Drawerr {
 	}
 
 	events() {
+
 		this.toggleBtn.addEventListener( 'click', () => {
 			this.toggleDrawer();
 		});
