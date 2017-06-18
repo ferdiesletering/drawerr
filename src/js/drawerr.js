@@ -1,13 +1,14 @@
 class Drawerr {
-	constructor(args) {
-		this.drawerr = document.querySelector(args.drawerr);
-		this.toggleBtn = document.querySelector(args.toggleBtn);
-		this.navbar = document.querySelector(args.navbar);
+	constructor() {
 		this.drawerOpenClass = 'drawerr--open';
 		this.toggleBtnActiveClass = 'drawerr-btn--active';
 	}
 
-	init() {
+	init(args) {
+		this.drawerr = document.querySelector(args.drawerr);
+		this.toggleBtn = document.querySelector(args.toggleBtn);
+		this.navbar = document.querySelector(args.navbar);
+
 		this.drawerr.classList.remove('drawerr--init');
 		this.drawerr.classList.add('drawerr');
 		this.toggleBtn.classList.add('drawerr-btn');
@@ -52,6 +53,4 @@ class Drawerr {
 	}
 }
 
-window.Drawerr = Drawerr;
 export default Drawerr;
-

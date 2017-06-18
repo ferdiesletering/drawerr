@@ -5,7 +5,7 @@
   "description": "Menu drawer with css translate and vanilla js",
   "repository": "https://github.com/s-ferdie/drawerr",
   "license": "MIT",
-  "main": "src/js/drawerr.js",
+  "main": "dist/drawerr.js",
   "scripts": {
     "build": "webpack --watch"
   },

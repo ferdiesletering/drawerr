@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
-    <link rel="stylesheet" href="dist/drawerrr.css">
+    <link rel="stylesheet" href="dist/drawerr.css">
     <style>
        body {
            font-family: 'Roboto', sans-serif;
@@ -162,7 +162,8 @@
         </li>
     </ul>
 <nav>
-<script src="dist/drawerr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js"></script>
+<script src="dist/drawerr.js"></script>
 <script>
 		var args = {
 			drawerr: '#drawer',
@@ -170,8 +171,7 @@
 			navbar: 'header'
 		};
 
-		new Drawerr( args ).init();
-
+		new drawerr().init(args);
 </script>
 </body>
 </html>x§

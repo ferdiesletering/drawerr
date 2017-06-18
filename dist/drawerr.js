@@ -1,3 +1,4 @@
+var drawerr =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -63,7 +64,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -82,29 +83,25 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Drawerr = function () {
-	function Drawerr(args) {
+	function Drawerr() {
 		_classCallCheck(this, Drawerr);
 
-		this.drawerr = document.querySelector(args.drawerr);
-		this.toggleBtn = document.querySelector(args.toggleBtn);
-		this.navbar = document.querySelector(args.navbar);
 		this.drawerOpenClass = 'drawerr--open';
 		this.toggleBtnActiveClass = 'drawerr-btn--active';
 	}
 
 	_createClass(Drawerr, [{
 		key: 'init',
-		value: function init() {
-			var _this = this;
+		value: function init(args) {
+			this.drawerr = document.querySelector(args.drawerr);
+			this.toggleBtn = document.querySelector(args.toggleBtn);
+			this.navbar = document.querySelector(args.navbar);
 
 			this.drawerr.classList.remove('drawerr--init');
 			this.drawerr.classList.add('drawerr');
 			this.toggleBtn.classList.add('drawerr-btn');
 			this.drawerrOffsetTop();
-
-			window.onload = function () {
-				_this.events();
-			};
+			this.events();
 		}
 	}, {
 		key: 'drawerrOffsetTop',
@@ -114,14 +111,14 @@ var Drawerr = function () {
 	}, {
 		key: 'events',
 		value: function events() {
-			var _this2 = this;
+			var _this = this;
 
 			this.toggleBtn.addEventListener('click', function () {
-				_this2.toggleDrawer();
+				_this.toggleDrawer();
 			});
 
 			document.addEventListener('click', function (e) {
-				_this2.bodyClick(e);
+				_this.bodyClick(e);
 			});
 		}
 	}, {
@@ -153,22 +150,25 @@ var Drawerr = function () {
 	return Drawerr;
 }();
 
-window.Drawerr = Drawerr;
 exports.default = Drawerr;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(0);
-module.exports = __webpack_require__(1);
+"use strict";
 
+
+var _drawerr = __webpack_require__(0);
+
+var _drawerr2 = _interopRequireDefault(_drawerr);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _drawerr2.default; /**
+                                     * We need this main function to correctly exports drawerr
+                                     * see http://siawyoung.com/coding/javascript/exporting-es6-modules-as-single-scripts-with-webpack.html
+                                     */
 
 /***/ })
 /******/ ]);

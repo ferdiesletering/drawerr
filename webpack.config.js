@@ -2,17 +2,19 @@ var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
-	filename: "drawerrr.css"
+	filename: "drawerr.css"
 });
 
 module.exports = {
- entry: [
- 	'./src/js/drawerr.js',
-    './src/scss/drawerr.scss'
- ],
+ entry: {
+	 drawerr:'./src/js/main.js',
+	 drawer:'./src/scss/drawerr.scss'
+ },
  output: {
-  filename: 'drawerr.min.js',
-  path: path.resolve( __dirname, 'dist' )
+  filename: '[name].js',
+  path: path.resolve( __dirname, 'dist' ),
+  library: '[name]',
+  libraryTarget: 'var',
  },
  module: {
 	 rules: [
