@@ -4,4 +4,6 @@
  */
 import Drawerr from './drawerr';
 
+window.drawerr = Drawerr;
+
 module.exports = Drawerr;

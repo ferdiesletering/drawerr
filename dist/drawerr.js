@@ -165,10 +165,13 @@ var _drawerr2 = _interopRequireDefault(_drawerr);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-module.exports = _drawerr2.default; /**
+window.drawerr = _drawerr2.default; /**
                                      * We need this main function to correctly exports drawerr
                                      * see http://siawyoung.com/coding/javascript/exporting-es6-modules-as-single-scripts-with-webpack.html
                                      */
+
+
+module.exports = _drawerr2.default;
 
 /***/ })
 /******/ ]);
