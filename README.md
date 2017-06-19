@@ -7,7 +7,7 @@ Drawerr supports multi-level navigation so it's not hiding menu items( good for 
 
 ## Features
 - Multilevel support
-- CSS animation( good for performance )
+- CSS animations( good for performance )
 - Hamburger included
 - Vanilla js, no jQuery
 - Overridable sass variables
@@ -15,7 +15,8 @@ Drawerr supports multi-level navigation so it's not hiding menu items( good for 
 
 ## Install via yarn & npm
 `npm install drawerr --save`
-`yarn add drawerr --save`
+
+`yarn add drawerr`
 
 ## Usage
 
@@ -25,7 +26,7 @@ Drawerr supports multi-level navigation so it's not hiding menu items( good for 
 drawerr/
 └── dist/
     └── drawerr.css
-	└── drawerr.js
+    └── drawerr.js
 ```
 
 Include CSS file inside the <head>
