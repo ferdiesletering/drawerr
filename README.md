@@ -1,5 +1,5 @@
 # Drawerr
-[![npm version](https://badge.fury.io/js/icon-gen.svg)](https://badge.fury.io/js/icon-gen)
+[![npm version](https://badge.fury.io/js/drawerr.svg)](https://badge.fury.io/js/drawerr)
 
 Drawerr is a mobile menu component that's simple and has no dependency on jQuery.
 It easily slides in with css animations(good for performance) when the hamburger button is clicked.
