@@ -1,8 +1,117 @@
 # Drawerr
-A lightweight vanilla javascript drawer with css transform animation
+Drawerr is a mobile menu component that's simple and has no dependency on jQuery.
+It easily slides in with css animations(good for performance) when the hamburger button is clicked.
+Drawerr supports multi-level navigation so it's not hiding menu items( good for UX ).
 
-Features:
+![image](https://user-images.githubusercontent.com/6705443/27301841-fe196dda-5534-11e7-8648-95017925248e.png)
+
+## Features
+- Multilevel support
+- CSS animation( good for performance )
+- Hamburger included
+- Vanilla js, no jQuery
 - Overridable sass variables
-- Supports up to 4 levels deep
+- [browser support](http://browserl.ist/defaults)
 
-![alt text](https://user-images.githubusercontent.com/6705443/27006307-d5386b6a-4e30-11e7-9e0b-4b236a6ceab2.gif "Drawerr preview")
+## Install via yarn & npm
+`npm install drawerr --save`
+`yarn add drawerr --save`
+
+## Usage
+
+### Required files
+
+```
+drawerr/
+└── dist/
+    └── drawerr.css
+	└── drawerr.js
+```
+
+Include CSS file inside the <head>
+```html
+<link rel="stylesheet" href="dist/drawerr.css">
+```
+
+Include JS file before the closing body tag
+```html
+<script src="dist/drawerr.js"></script>
+```
+
+## Hamburger HTML
+```
+<button class="toggleDrawer">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+```
+
+## Drawerr HTML
+Basic html is as follows:
+``` html
+<nav id="drawer" class="drawerr--init">
+    <ul>
+        <li>
+            <span class="section-title active">Gezus</span>
+            <ul>
+                <li>
+                    <a class="active" href="#">rebum</a>
+                    <ul>
+                        <li><a class="active" href="#">case novum</a></li>
+                        <li><a href="#">iisque</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">vix purto</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <span class="section-title">quodsi</span>
+            <ul>
+                <li><a href="#">nullam</a></li>
+                <li>
+                    <a href="#">corpora philosophia</a>
+                    <ul>
+                        <li>
+                            <a href="#">mallan</a>
+                        </li>
+                        <li>
+                            <a href="#">rebum</a>
+                            <ul>
+                                <li><a href="#">case novum</a></li>
+                                <li>
+                                    <a href="#">iqtario</a>
+                                    <ul>
+                                        <li><a href="#">faari</a></li>
+                                        <li><a href="#">elissee</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+<nav>
+```
+
+## Drawerr JS
+```js
+const args = {
+    drawerr: '#drawer',
+    toggleBtn: '.toggleDrawer',
+    navbar: 'header'
+};
+
+new drawerr().init(args);
+
+```
+
+NOTE: the active class should be rendered or set via backend
+
+## Plans for the future
+- Integrate with WordPress
+- Testing with browserstack
+- More options based on the needs
