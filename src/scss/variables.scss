@@ -1,7 +1,8 @@
 $drawerr-bg: #eee !default;
 $drawerr-text-color: #000 !default;
 $drawerr-navbar-height: 80px !default;
-$drawerr-shadow-depth: 10px !default;
+//$drawerr-shadow-depth: 10px !default;
+$drawerr-shadow-depth: 1vw;
 $drawerr-width: 300px !default;
 
 // Scrollbar
@@ -17,7 +18,7 @@ $drawerr-item-active-before: #35D8B3 !default;
 $drawerr-item-active-color: #35D8B3 !default;
 
 $drawerr-padding-half: $drawerr-padding / 2;
-$drawerr-translate: $drawerr-width + $drawerr-shadow-depth;
+$drawerr-translate: calc( -#{$drawerr-width} - #{$drawerr-shadow-depth});
 
 // Hamburger
 $drawerr-hamburger-width:40px !default;

@@ -120,6 +120,10 @@ var Drawerr = function () {
 			document.addEventListener('click', function (e) {
 				_this.bodyClick(e);
 			});
+
+			window.onresize = function (e) {
+				_this.onResize();
+			};
 		}
 	}, {
 		key: 'toggleDrawer',
@@ -128,13 +132,9 @@ var Drawerr = function () {
 			this.addOrRemoveClass(this.toggleBtn, this.toggleBtnActiveClass);
 		}
 	}, {
-		key: 'addOrRemoveClass',
-		value: function addOrRemoveClass(el, addClass) {
-			if (el.classList.contains(addClass)) {
-				return el.classList.remove(addClass);
-			}
-
-			el.classList.add(addClass);
+		key: 'onResize',
+		value: function onResize() {
+			this.drawerrOffsetTop();
 		}
 	}, {
 		key: 'bodyClick',
@@ -144,6 +144,15 @@ var Drawerr = function () {
 			if (!this.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(this.drawerOpenClass)) {
 				this.toggleDrawer();
 			}
+		}
+	}, {
+		key: 'addOrRemoveClass',
+		value: function addOrRemoveClass(el, addClass) {
+			if (el.classList.contains(addClass)) {
+				return el.classList.remove(addClass);
+			}
+
+			el.classList.add(addClass);
 		}
 	}]);
 

@@ -28,6 +28,10 @@ class Drawerr {
 		document.addEventListener( 'click', (e) => {
 			this.bodyClick(e);
 		});
+
+		window.onresize = (e) => {
+			this.onResize();
+		};
 	}
 
 	toggleDrawer() {
@@ -35,12 +39,8 @@ class Drawerr {
 		this.addOrRemoveClass( this.toggleBtn, this.toggleBtnActiveClass );
 	}
 
-	addOrRemoveClass(el, addClass) {
-		if( el.classList.contains(addClass)) {
-			return el.classList.remove(addClass);
-		}
-
-		el.classList.add(addClass);
+	onResize() {
+		this.drawerrOffsetTop();
 	}
 
 	bodyClick(e) {
@@ -50,6 +50,14 @@ class Drawerr {
 			this.toggleDrawer();
 
 		}
+	}
+
+	addOrRemoveClass(el, addClass) {
+		if( el.classList.contains(addClass)) {
+			return el.classList.remove(addClass);
+		}
+
+		el.classList.add(addClass);
 	}
 }
 
