@@ -1,64 +1,74 @@
 class Drawerr {
-	constructor() {
-		this.drawerOpenClass = 'drawerr--open';
-		this.toggleBtnActiveClass = 'drawerr-btn--active';
-	}
+    constructor() {
+        this.drawerOpenClass = 'drawerr--open';
+        this.toggleBtnActiveClass = 'drawerr-btn--active';
+        this.openEvent = new Event('drawerr-open');
+        this.closeEvent = new Event('drawerr-close');
+    }
 
-	init(args) {
-		this.drawerr = document.querySelector(args.drawerr);
-		this.toggleBtn = document.querySelector(args.toggleBtn);
-		this.navbar = document.querySelector(args.navbar);
+    init(args) {
+        this.drawerr = document.querySelector(args.drawerr);
+        this.toggleBtn = document.querySelector(args.toggleBtn);
+        this.navbar = document.querySelector(args.navbar);
 
-		this.drawerr.classList.remove('drawerr--init');
-		this.drawerr.classList.add('drawerr');
-		this.toggleBtn.classList.add('drawerr-btn');
-		this.drawerrOffsetTop();
-		this.events();
-	}
+        this.drawerr.classList.remove('drawerr--init');
+        this.drawerr.classList.add('drawerr');
+        this.toggleBtn.classList.add('drawerr-btn');
+        this.drawerrOffsetTop();
+        this.events();
+    }
 
-	drawerrOffsetTop() {
-		this.drawerr.style.top = this.navbar.offsetHeight + 'px';
-	}
+    drawerrOffsetTop() {
+        this.drawerr.style.top = this.navbar.offsetHeight + 'px';
+    }
 
-	events() {
-		this.toggleBtn.addEventListener( 'click', () => {
-			this.toggleDrawer();
-		});
+    events() {
+        this.toggleBtn.addEventListener('click', () => {
+            this.toggleDrawer();
+        });
 
-		document.addEventListener( 'click', (e) => {
-			this.bodyClick(e);
-		});
+        document.addEventListener('click', (e) => {
+            this.bodyClick(e);
+        });
 
-		window.onresize = (e) => {
-			this.onResize();
-		};
-	}
+        window.onresize = (e) => {
+            this.onResize();
+        };
+    }
 
-	toggleDrawer() {
-		this.addOrRemoveClass( this.drawerr, this.drawerOpenClass );
-		this.addOrRemoveClass( this.toggleBtn, this.toggleBtnActiveClass );
-	}
+    toggleDrawer() {
+        this.addOrRemoveClass(this.drawerr, this.drawerOpenClass);
+        this.addOrRemoveClass(this.toggleBtn, this.toggleBtnActiveClass);
+        this.dispatchEvents();
+    }
 
-	onResize() {
-		this.drawerrOffsetTop();
-	}
+    onResize() {
+        this.drawerrOffsetTop();
+    }
 
-	bodyClick(e) {
-		if( this.toggleBtn.contains(e.target )) return;
+    bodyClick(e) {
+        if (this.toggleBtn.contains(e.target)) return;
 
-		if( !this.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(this.drawerOpenClass)) {
-			this.toggleDrawer();
+        if (!this.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(this.drawerOpenClass)) {
+            this.toggleDrawer();
 
-		}
-	}
+        }
+    }
 
-	addOrRemoveClass(el, addClass) {
-		if( el.classList.contains(addClass)) {
-			return el.classList.remove(addClass);
-		}
+    dispatchEvents() {
+        if (this.drawerr.classList.contains(this.drawerOpenClass)) {
+            document.dispatchEvent(this.openEvent);
+        } else {
+            document.dispatchEvent(this.closeEvent);
+        }
+    }
 
-		el.classList.add(addClass);
-	}
+    addOrRemoveClass(el, addClass) {
+        if (el.classList.contains(addClass)) {
+            return el.classList.remove(addClass);
+        }
+        el.classList.add(addClass);
+    }
 }
 
 export default Drawerr;
