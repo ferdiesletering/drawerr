@@ -31,8 +31,7 @@ class Drawerr {
             this.bodyClick(e);
         });
 
-        window.onresize = (e) =>
-        {
+        window.onresize = (e) => {
             this.onResize();
         };
     }
@@ -64,7 +63,7 @@ class Drawerr {
         }
     }
 
-    addOrRemoveClass(el, addClass, fireEvent = false) {
+    addOrRemoveClass(el, addClass) {
         if (el.classList.contains(addClass)) {
             return el.classList.remove(addClass);
         }

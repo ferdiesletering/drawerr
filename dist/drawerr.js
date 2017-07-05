@@ -160,8 +160,6 @@ var Drawerr = function () {
     }, {
         key: 'addOrRemoveClass',
         value: function addOrRemoveClass(el, addClass) {
-            var fireEvent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
             if (el.classList.contains(addClass)) {
                 return el.classList.remove(addClass);
             }
