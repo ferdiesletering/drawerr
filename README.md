@@ -112,6 +112,10 @@ new drawerr().init(args);
 
 ```
 
+### Events
+
+Drawerr fires off events when it opens (`drawerr-open`) or closes (`drawerr-close`) the menu.
+
 NOTE: the active class should be rendered or set via backend
 
 ## Plans for the future
