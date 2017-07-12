@@ -4,6 +4,10 @@
 	box-sizing:border-box;
 }
 
+.drawerr-body-no-scroll {
+	overflow-y:hidden;
+}
+
 .drawerr {
 	position: fixed;
 	z-index:1;

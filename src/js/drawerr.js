@@ -1,5 +1,6 @@
 class Drawerr {
     constructor() {
+        this.bodyPreventScrollClass = 'drawerr-body-no-scroll';
         this.drawerOpenClass = 'drawerr--open';
         this.toggleBtnActiveClass = 'drawerr-btn--active';
         this.openEvent = new Event('drawerr-open');
@@ -7,6 +8,7 @@ class Drawerr {
     }
 
     init(args) {
+        this.body = document.querySelector('body');
         this.drawerr = document.querySelector(args.drawerr);
         this.toggleBtn = document.querySelector(args.toggleBtn);
         this.navbar = document.querySelector(args.navbar);
@@ -37,6 +39,7 @@ class Drawerr {
     }
 
     toggleDrawer() {
+        this.addOrRemoveClass(this.body, this.bodyPreventScrollClass);
         this.addOrRemoveClass(this.drawerr, this.drawerOpenClass);
         this.addOrRemoveClass(this.toggleBtn, this.toggleBtnActiveClass);
         this.dispatchEvents();

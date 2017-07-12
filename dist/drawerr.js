@@ -86,6 +86,7 @@ var Drawerr = function () {
     function Drawerr() {
         _classCallCheck(this, Drawerr);
 
+        this.bodyPreventScrollClass = 'drawerr-body-no-scroll';
         this.drawerOpenClass = 'drawerr--open';
         this.toggleBtnActiveClass = 'drawerr-btn--active';
         this.openEvent = new Event('drawerr-open');
@@ -95,6 +96,7 @@ var Drawerr = function () {
     _createClass(Drawerr, [{
         key: 'init',
         value: function init(args) {
+            this.body = document.querySelector('body');
             this.drawerr = document.querySelector(args.drawerr);
             this.toggleBtn = document.querySelector(args.toggleBtn);
             this.navbar = document.querySelector(args.navbar);
@@ -130,6 +132,7 @@ var Drawerr = function () {
     }, {
         key: 'toggleDrawer',
         value: function toggleDrawer() {
+            this.addOrRemoveClass(this.body, this.bodyPreventScrollClass);
             this.addOrRemoveClass(this.drawerr, this.drawerOpenClass);
             this.addOrRemoveClass(this.toggleBtn, this.toggleBtnActiveClass);
             this.dispatchEvents();
