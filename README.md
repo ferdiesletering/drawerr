@@ -9,6 +9,7 @@ Drawerr supports multi-level navigation so it's not hiding menu items( good for 
 
 ## Features
 - Multilevel support
+- Slide direction( left or right )
 - CSS animations( good for performance )
 - Hamburger included
 - Vanilla js, no jQuery
@@ -102,15 +103,32 @@ Basic html is as follows:
 
 ## Drawerr JS
 ```js
-const args = {
-    drawerr: '#drawer',
-    toggleBtn: '.toggleDrawer',
-    navbar: 'header'
-};
 
 new drawerr().init(args);
 
 ```
+
+### Options
+
+#### drawerr <string>
+Drawerr container selector
+
+default: #drawerr
+
+#### toggleBtn <string>
+Btn selector which contains the hamburger
+
+default: .toggleBtn
+
+#### navbar <string>
+Navbar selector to determine the offset height for drawerr to slide in
+
+default: header
+
+#### slideFrom <string>
+Direction where drawerr comes from
+
+default:left
 
 ### Events
 
@@ -125,6 +143,5 @@ document.addEventListener('drawerr-open', function(){
 NOTE: the active class should be rendered or set via backend
 
 ## Plans for the future
-- Integrate with WordPress
 - Testing with browserstack
 - More options based on the needs

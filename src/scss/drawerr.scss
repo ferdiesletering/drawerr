@@ -4,12 +4,17 @@
 	box-sizing:border-box;
 }
 
+body.drawerr-no-scroll {
+	height: 100%;
+	overflow: hidden;
+}
+
 .drawerr {
 	position: fixed;
 	z-index:1;
 	top:$drawerr-navbar-height;
 	width:$drawerr-width;
-	height:100%;
+	height:calc(100% - #{$drawerr-navbar-height});
 	overflow-y:auto;
 	overflow-x:hidden;
 	transform:translateX($drawerr-translate);
@@ -24,10 +29,6 @@
 		margin:0;
 		padding:0;
 		list-style: none;
-	}
-
-	ul:first-child {
-		padding-bottom:$drawerr-padding;
 	}
 
 	// Depth 1
@@ -114,6 +115,17 @@
 	transform:translateX(0px);
 }
 
+/**
+ * Slide drawerr from the right side
+ */
+.drawerr-slide-from-right {
+	transform:translateX($drawerr-translate-rtl);
+}
+
+.drawerr-slide-from-right.drawerr--open {
+	transform:translateX( calc(100vw - #{$drawerr-width} ));
+}
+
 .drawerr-btn {
 	display:flex;
 	justify-content: space-between;
@@ -126,7 +138,7 @@
 
 	span {
 		width:inherit;
-		height:5px;
+		height:$drawerr-hamburger-bar-height;
 		background:$drawerr-hamburger-bars-bg;
 		transition: all 0.3s ease-in-out;
 	}
