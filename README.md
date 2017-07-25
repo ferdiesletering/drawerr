@@ -120,6 +120,13 @@ Btn selector which contains the hamburger
 
 default: .toggleBtn
 
+#### btnText <string>
+Menu text under the hamburger
+
+default MENU
+
+default: .toggleBtn
+
 #### navbar <string>
 Navbar selector to determine the offset height for drawerr to slide in
 

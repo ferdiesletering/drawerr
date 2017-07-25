@@ -10,7 +10,12 @@
     <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
     <link rel="stylesheet" href="dist/drawerr.css">
     <style>
+        * {
+            box-sizing:border-box;
+        }
+
        body {
+           margin:0;
            font-family: 'Roboto', sans-serif;
        }
 
@@ -66,11 +71,11 @@
 <body>
 <header>
     <ul>
-        <button class="toggleDrawerr">
+        <div class="toggleDrawerr">
             <span></span>
             <span></span>
             <span></span>
-        </button>
+        </div>
         <li>
             <img src="src/images/logo.svg">
         </li>

@@ -1,9 +1,5 @@
 @import "variables";
 
-* {
-	box-sizing:border-box;
-}
-
 body.drawerr-no-scroll {
 	height: 100%;
 	overflow: hidden;
@@ -136,7 +132,7 @@ body.drawerr-no-scroll {
 	padding:0;
 	outline: none;
 
-	span {
+	span:not(.drawerr-btn__menu-text) {
 		width:inherit;
 		height:$drawerr-hamburger-bar-height;
 		background:$drawerr-hamburger-bars-bg;
@@ -144,10 +140,19 @@ body.drawerr-no-scroll {
 	}
 }
 
+.drawerr-btn__menu-text {
+	font-size:.8rem;
+}
+
+.drawerr-btn--has-menu-text {
+	height:$drawerr-hamburger-height * 2;
+	align-self:flex-end;
+}
+
 .drawerr-btn--active {
 	span {
 		&:nth-child(1) {
-			transform: translateY(12px) rotate(45deg);
+			transform: translateY(5px) rotate(45deg);
 		}
 
 		&:nth-child(2) {

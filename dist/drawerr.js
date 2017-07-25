@@ -75,7 +75,7 @@ var drawerr =
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -83,125 +83,129 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Drawerr = function () {
-    function Drawerr() {
-        _classCallCheck(this, Drawerr);
+  function Drawerr() {
+    _classCallCheck(this, Drawerr);
 
-        // Options
-        this.drawerr = '#drawerr';
-        this.toggleBtn = '.toggleDrawerr';
-        this.slideFrom = 'left';
-        this.navbar = 'header';
+    // Domclasses
+    this.bodyNoScrollClass = 'drawerr-no-scroll';
+    this.drawerOpenClass = 'drawerr--open';
+    this.toggleBtnActiveClass = 'drawerr-btn--active';
+    this.slideFromClass = 'drawerr-slide-from-right';
 
-        // Domclasses
-        this.bodyNoScrollClass = 'drawerr-no-scroll';
-        this.drawerOpenClass = 'drawerr--open';
-        this.toggleBtnActiveClass = 'drawerr-btn--active';
-        this.slideFromClass = 'drawerr-slide-from-right';
+    //  Events
+    this.openEvent = new Event('drawerr-open');
+    this.closeEvent = new Event('drawerr-close');
+  }
 
-        // Events
-        this.openEvent = new Event('drawerr-open');
-        this.closeEvent = new Event('drawerr-close');
+  _createClass(Drawerr, [{
+    key: 'init',
+    value: function init() {
+      var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { btnText: 'MENU', drawerr: '#drawerr', navbar: 'header', toggleBtn: '.toggleDrawerr', slideFrom: 'left' };
+
+      this.drawerr = args.drawerr;
+      this.toggleBtn = args.toggleBtn;
+      this.navbar = args.navbar;
+      this.slideFrom = args.slideFrom;
+      this.btnText = args.btnText;
+
+      // Dom elements
+      this.body = document.querySelector('body');
+      this.drawerr = document.querySelector(this.drawerr);
+      this.toggleBtn = document.querySelector(this.toggleBtn);
+      this.navbar = document.querySelector(this.navbar);
+
+      this.beforeVisible();
+
+      // Drawerr now visible
+      this.drawerr.classList.remove('drawerr--init');
+      this.drawerr.classList.add('drawerr');
+      this.toggleBtn.classList.add('drawerr-btn');
+      this.events();
     }
+  }, {
+    key: 'beforeVisible',
+    value: function beforeVisible() {
+      this.setSlideFromDirection();
+      this.drawerrOffsetTop();
+      this.appendBtnText();
+    }
+  }, {
+    key: 'drawerrOffsetTop',
+    value: function drawerrOffsetTop() {
+      this.drawerr.style.top = this.navbar.offsetHeight + 'px';
+    }
+  }, {
+    key: 'setSlideFromDirection',
+    value: function setSlideFromDirection() {
+      if (this.slideFrom === 'right') this.drawerr.classList.add(this.slideFromClass);
+    }
+  }, {
+    key: 'events',
+    value: function events() {
+      var _this = this;
 
-    _createClass(Drawerr, [{
-        key: 'init',
-        value: function init() {
-            var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      this.toggleBtn.addEventListener('click', function () {
+        _this.toggleDrawer();
+      });
 
-            this.drawerr = args.drawerr || this.drawerr;
-            this.toggleBtn = args.toggleBtn || this.toggleBtn;
-            this.navbar = args.navbar || this.navbar;
-            this.slideFrom = args.slideFrom || this.slideFrom;
+      document.addEventListener('click', function (e) {
+        _this.bodyClick(e);
+      });
 
-            // Dom elements
-            this.body = document.querySelector('body');
-            this.drawerr = document.querySelector(this.drawerr);
-            this.toggleBtn = document.querySelector(this.toggleBtn);
-            this.navbar = document.querySelector(this.navbar);
+      window.onresize = function (e) {
+        _this.onResize();
+      };
+    }
+  }, {
+    key: 'toggleDrawer',
+    value: function toggleDrawer() {
+      this.addOrRemoveClass(this.body, this.bodyNoScrollClass);
+      this.addOrRemoveClass(this.drawerr, this.drawerOpenClass);
+      this.addOrRemoveClass(this.toggleBtn, this.toggleBtnActiveClass);
+      this.dispatchEvents();
+    }
+  }, {
+    key: 'onResize',
+    value: function onResize() {
+      this.drawerrOffsetTop();
+    }
+  }, {
+    key: 'bodyClick',
+    value: function bodyClick(e) {
+      if (this.toggleBtn.contains(e.target)) return;
 
-            this.beforeVisible();
+      if (!this.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(this.drawerOpenClass)) {
+        this.toggleDrawer();
+      }
+    }
+  }, {
+    key: 'dispatchEvents',
+    value: function dispatchEvents() {
+      if (this.drawerr.classList.contains(this.drawerOpenClass)) {
+        document.dispatchEvent(this.openEvent);
+      } else {
+        document.dispatchEvent(this.closeEvent);
+      }
+    }
+  }, {
+    key: 'addOrRemoveClass',
+    value: function addOrRemoveClass(el, addClass) {
+      if (el.classList.contains(addClass)) {
+        return el.classList.remove(addClass);
+      }
+      el.classList.add(addClass);
+    }
+  }, {
+    key: 'appendBtnText',
+    value: function appendBtnText() {
+      if (this.btnText.length === 0) return;
 
-            // Drawerr now visible
-            this.drawerr.classList.remove('drawerr--init');
-            this.drawerr.classList.add('drawerr');
-            this.toggleBtn.classList.add('drawerr-btn');
-            this.events();
-        }
-    }, {
-        key: 'beforeVisible',
-        value: function beforeVisible() {
-            this.setSlideFromDirection();
-            this.drawerrOffsetTop();
-        }
-    }, {
-        key: 'drawerrOffsetTop',
-        value: function drawerrOffsetTop() {
-            this.drawerr.style.top = this.navbar.offsetHeight + 'px';
-        }
-    }, {
-        key: 'setSlideFromDirection',
-        value: function setSlideFromDirection() {
-            if (this.slideFrom === 'right') this.drawerr.classList.add(this.slideFromClass);
-        }
-    }, {
-        key: 'events',
-        value: function events() {
-            var _this = this;
+      this.toggleBtn.classList.add('drawerr-btn--has-menu-text');
+      this.toggleBtn.insertAdjacentHTML('beforeend', '<span class="drawerr-btn__menu-text">' + this.btnText + '</span>');
+    }
+  }]);
 
-            this.toggleBtn.addEventListener('click', function () {
-                _this.toggleDrawer();
-            });
-
-            document.addEventListener('click', function (e) {
-                _this.bodyClick(e);
-            });
-
-            window.onresize = function (e) {
-                _this.onResize();
-            };
-        }
-    }, {
-        key: 'toggleDrawer',
-        value: function toggleDrawer() {
-            this.addOrRemoveClass(this.body, this.bodyNoScrollClass);
-            this.addOrRemoveClass(this.drawerr, this.drawerOpenClass);
-            this.addOrRemoveClass(this.toggleBtn, this.toggleBtnActiveClass);
-            this.dispatchEvents();
-        }
-    }, {
-        key: 'onResize',
-        value: function onResize() {
-            this.drawerrOffsetTop();
-        }
-    }, {
-        key: 'bodyClick',
-        value: function bodyClick(e) {
-            if (this.toggleBtn.contains(e.target)) return;
-
-            if (!this.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(this.drawerOpenClass)) {
-                this.toggleDrawer();
-            }
-        }
-    }, {
-        key: 'dispatchEvents',
-        value: function dispatchEvents() {
-            if (this.drawerr.classList.contains(this.drawerOpenClass)) {
-                document.dispatchEvent(this.openEvent);
-            } else {
-                document.dispatchEvent(this.closeEvent);
-            }
-        }
-    }, {
-        key: 'addOrRemoveClass',
-        value: function addOrRemoveClass(el, addClass) {
-            if (el.classList.contains(addClass)) {
-                return el.classList.remove(addClass);
-            }
-            el.classList.add(addClass);
-        }
-    }]);
-
-    return Drawerr;
+  return Drawerr;
 }();
 
 exports.default = Drawerr;
