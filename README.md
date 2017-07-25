@@ -5,7 +5,7 @@ Drawerr is a mobile menu component that's simple and has no dependency on jQuery
 It easily slides in with css animations(good for performance) when the hamburger button is clicked.
 Drawerr supports multi-level navigation so it's not hiding menu items( good for UX ).
 
-![image](https://user-images.githubusercontent.com/6705443/27301841-fe196dda-5534-11e7-8648-95017925248e.png)
+![image](https://user-images.githubusercontent.com/6705443/28580060-b993c7c8-715e-11e7-81de-e5235a979e55.png)
 
 ## Features
 - Multilevel support
@@ -124,8 +124,6 @@ default: .toggleBtn
 Menu text under the hamburger
 
 default MENU
-
-default: .toggleBtn
 
 #### navbar <string>
 Navbar selector to determine the offset height for drawerr to slide in
