@@ -91,22 +91,30 @@ var Drawerr = function () {
     this.drawerOpenClass = 'drawerr--open';
     this.toggleBtnActiveClass = 'drawerr-btn--active';
     this.slideFromClass = 'drawerr-slide-from-right';
+    this.options = {
+      btnText: 'MENU',
+      drawerr: '#drawerr',
+      navbar: 'header',
+      toggleBtn: '.toggleDrawerr',
+      slideFrom: 'left'
 
-    //  Events
-    this.openEvent = new Event('drawerr-open');
+      //  Events
+    };this.openEvent = new Event('drawerr-open');
     this.closeEvent = new Event('drawerr-close');
   }
 
   _createClass(Drawerr, [{
     key: 'init',
     value: function init() {
-      var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { btnText: 'MENU', drawerr: '#drawerr', navbar: 'header', toggleBtn: '.toggleDrawerr', slideFrom: 'left' };
+      var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-      this.drawerr = args.drawerr;
-      this.toggleBtn = args.toggleBtn;
-      this.navbar = args.navbar;
-      this.slideFrom = args.slideFrom;
-      this.btnText = args.btnText;
+      var options = Object.assign(this.options, args);
+
+      this.drawerr = options.drawerr;
+      this.toggleBtn = options.toggleBtn;
+      this.navbar = options.navbar;
+      this.slideFrom = options.slideFrom;
+      this.btnText = options.btnText;
 
       // Dom elements
       this.body = document.querySelector('body');
