@@ -16,6 +16,11 @@ Drawerr supports multi-level navigation so it's not hiding menu items( good for 
 - Overridable sass variables
 - [browser support](http://browserl.ist/defaults)
 
+## Browser support
+ Tested on real browsers with [BrowserStack](https://www.browserstack.com).
+ 
+![logo-01 1](https://user-images.githubusercontent.com/6705443/28997491-4a171510-7a16-11e7-88b7-d34f4477a1b3.png)
+
 ## Install via yarn & npm
 `npm install drawerr --save`
 
