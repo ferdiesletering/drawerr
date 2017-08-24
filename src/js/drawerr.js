@@ -21,7 +21,7 @@ class Drawerr {
   init (args = {}) {
     const options = Object.assign(this.options, args)
 
-    this.drawerr = options.drawerr
+    this.drawerrSelector = options.drawerr
     this.toggleBtn = options.toggleBtn
     this.navbar = options.navbar
     this.slideFrom = options.slideFrom
@@ -29,7 +29,7 @@ class Drawerr {
 
     // Dom elements
     this.body = document.querySelector('body')
-    this.drawerr = document.querySelector(this.drawerr)
+    this.drawerr = document.querySelector(this.drawerrSelector)
     this.toggleBtn = document.querySelector(this.toggleBtn)
     this.navbar = document.querySelector(this.navbar)
 
@@ -84,9 +84,8 @@ class Drawerr {
   bodyClick (e) {
     if (this.toggleBtn.contains(e.target)) return
 
-    if (!this.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(this.drawerOpenClass)) {
+    if (!this.drawerr.contains(e.target) && document.querySelector(this.drawerrSelector).classList.contains(this.drawerOpenClass)) {
       this.toggleDrawer()
-
     }
   }
 

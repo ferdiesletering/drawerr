@@ -30,7 +30,6 @@
             background: linear-gradient(45deg,#64AFC0 0,#35D8B3 100%);
             color:#fff;
             z-index:2;
-
         }
 
         header ul {
@@ -70,6 +69,7 @@
 </head>
 <body>
 <header>
+    <a id="triggerSidenav">Another menu</a>
     <ul>
         <div class="toggleDrawerr">
             <span></span>
@@ -168,9 +168,28 @@
         </li>
     </ul>
 </nav>
+
+<nav id="sidemenu" class="drawerr--init">
+    <ul>
+        <li>
+            <a href="">Lorem ipsum</a></li>
+        <a href="">Audiam</a>
+    </ul>
+</nav>
+
 <script src="dist/drawerr.js"></script>
 <script>
-		new drawerr().init();
+		new drawerr().init({
+          drawerr: '#drawerr'
+        });
+
+		new drawerr().init({
+          btnText: '',
+          drawerr: '#sidemenu',
+          toggleBtn: '#triggerSidenav',
+          slideFrom: 'right'
+        });
+
 </script>
 </body>
 </html>

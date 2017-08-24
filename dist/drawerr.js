@@ -110,7 +110,7 @@ var Drawerr = function () {
 
       var options = Object.assign(this.options, args);
 
-      this.drawerr = options.drawerr;
+      this.drawerrSelector = options.drawerr;
       this.toggleBtn = options.toggleBtn;
       this.navbar = options.navbar;
       this.slideFrom = options.slideFrom;
@@ -118,7 +118,7 @@ var Drawerr = function () {
 
       // Dom elements
       this.body = document.querySelector('body');
-      this.drawerr = document.querySelector(this.drawerr);
+      this.drawerr = document.querySelector(this.drawerrSelector);
       this.toggleBtn = document.querySelector(this.toggleBtn);
       this.navbar = document.querySelector(this.navbar);
 
@@ -182,7 +182,7 @@ var Drawerr = function () {
     value: function bodyClick(e) {
       if (this.toggleBtn.contains(e.target)) return;
 
-      if (!this.drawerr.contains(e.target) && document.querySelector('.drawerr').classList.contains(this.drawerOpenClass)) {
+      if (!this.drawerr.contains(e.target) && document.querySelector(this.drawerrSelector).classList.contains(this.drawerOpenClass)) {
         this.toggleDrawer();
       }
     }
