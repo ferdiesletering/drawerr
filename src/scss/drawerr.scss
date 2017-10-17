@@ -1,8 +1,13 @@
 @import "variables";
 
-body.drawerr-no-scroll {
-	height: 100%;
-	overflow: hidden;
+html {
+	height:100%;
+	overflow:hidden;
+}
+
+body {
+	height:100%;
+	overflow:auto;
 }
 
 .drawerr {
