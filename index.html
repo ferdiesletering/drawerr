@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="dist/drawerr.css">
     <style>
         * {
@@ -51,8 +52,8 @@
             color:#fff;
         }
 
-        .material-icons {
-            line-height:50px;
+        .fa {
+            margin-right:10px;
         }
 
        img {
@@ -69,7 +70,6 @@
 </head>
 <body>
 <header>
-    <a id="triggerSidenav">Another menu</a>
     <ul>
         <div class="toggleDrawerr">
             <span></span>
@@ -119,16 +119,16 @@
 <nav id="drawerr" class="drawerr--init">
     <ul>
         <li>
-            <span class="section-title active">Gezus</span>
+            <span class="section-title">
+                <i class="fa fa-server" aria-hidden="true"></i>
+                Cloud services
+            </span>
             <ul>
                 <li>
-                    <a class="active" href="#">rebum</a>
-                    <ul>
-                        <li><a class="active" href="#">case novum</a></li>
-                        <li><a href="#">iisque</a></li>
-                    </ul>
+                    <a class="active" href="#">Amazon AWS</a>
+                    <a href="#">Google Cloud</a>
                 </li>
-                <li><a href="#">vix purto</a></li>
+                <li><a href="#">Dropbox</a></li>
             </ul>
         </li>
 
@@ -192,14 +192,6 @@
 		new drawerr().init({
           drawerr: '#drawerr'
         });
-
-		new drawerr().init({
-          btnText: '',
-          drawerr: '#sidemenu',
-          toggleBtn: '#triggerSidenav',
-          slideFrom: 'right'
-        });
-
 </script>
 </body>
 </html>

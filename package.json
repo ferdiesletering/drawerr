@@ -20,5 +20,8 @@
     "postcss-loader": "^2.0.6",
     "sass-loader": "^6.0.5",
     "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "font-awesome": "FortAwesome/Font-Awesome"
   }
 }
