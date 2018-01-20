@@ -4,6 +4,7 @@ $drawerr-navbar-height: 80px !default;
 $drawerr-shadow-depth: 10px !default;
 $drawerr-shadow-depth: 1vw;
 $drawerr-width: 80% !default;
+$drawerr-transition: transform 0.5s ease-in-out;
 
 // Scrollbar
 $drawerr-scrollbar: 4px !default;
@@ -11,13 +12,14 @@ $drawerr-scrollbar-thumb: darken(#e3e3e3, 50%) !default;
 $drawerr-scrollbar-track-color: #e3e3e3 !default;
 
 // Section title
-$drawerr-section-font-size:15px;
+$drawerr-section-font-size:17px;
 
 // Menu items
 $drawerr-padding-left: 1.5rem !default;
 $drawerr-padding: 1.2rem 1.2rem 1.2rem $drawerr-padding-left !default;
 $drawerr-item-padding-indent:.8rem;
 $drawerr-item-font-size:16px;
+$drawerr-item-font-weight:400;
 $drawerr-item-border-bottom-color: #E6EAEA !default;
 $drawerr-item-active-before: #49c5b6 !default;
 $drawerr-item-active-color: #49c5b6 !default;
