@@ -14,9 +14,10 @@ class Drawerr {
       slideFrom: 'left'
     }
 
-    //  Events
+
     this.openEvent = new Event('drawerr-open')
     this.closeEvent = new Event('drawerr-close')
+   
   }
 
   init (args = {}) {

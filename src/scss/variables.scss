@@ -25,7 +25,7 @@ $drawerr-item-active-before: #49c5b6 !default;
 $drawerr-item-active-color: #49c5b6 !default;
 
 $drawerr-padding-half: $drawerr-padding / 2;
-$drawerr-translate: calc(-100% - 1vw);
+$drawerr-translate: translateX(-100%) translateX(-1vw);
 $drawerr-translate-rtl: calc( 100vw + #{$drawerr-shadow-depth});
 
 // Hamburger

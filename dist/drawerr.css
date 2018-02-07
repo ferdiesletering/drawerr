@@ -6,8 +6,8 @@
   height: calc(100% - 80px);
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-transform: translateX(calc(-100% - 1vw));
-  transform: translateX(calc(-100% - 1vw));
+  -webkit-transform: translateX(-100%) translateX(-1vw);
+  transform: translateX(-100%) translateX(-1vw);
   transition: transform 0.5s ease-in-out;
   background: #f4f7f6;
   box-shadow: 1px 0px 1vw 0px rgba(50, 50, 50, 0.75);
