@@ -1,8 +1,14 @@
-var path = require('path');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
 	filename: "drawerr.css"
+});
+
+const styleLint = new StyleLintPlugin({
+	files: './src/scss/**/*.scss ',
+	syntax: 'scss',
 });
 
 module.exports = {
@@ -40,6 +46,7 @@ module.exports = {
 	 }]
  },
  plugins: [
-	 extractSass
+	 extractSass,
+	 styleLint
  ]
 };

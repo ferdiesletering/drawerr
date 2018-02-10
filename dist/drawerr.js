@@ -98,9 +98,9 @@ var Drawerr = function () {
       navbar: 'header',
       toggleBtn: '.toggleDrawerr',
       slideFrom: 'left'
+    };
 
-      //  Events
-    };this.openEvent = new Event('drawerr-open');
+    this.openEvent = new Event('drawerr-open');
     this.closeEvent = new Event('drawerr-close');
   }
 

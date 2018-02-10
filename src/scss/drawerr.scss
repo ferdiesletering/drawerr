@@ -14,6 +14,28 @@
 	box-shadow:1px 0px $drawerr-shadow-depth 0px rgba(50, 50, 50, 0.75);
 
 	/**
+	 * Menu items
+	 */
+	 .section-title,
+	 a {
+		 display:flex;
+		 align-items: center;
+		 padding:$drawerr-padding;
+		 border-bottom:1px solid $drawerr-item-border-bottom-color;
+		 text-decoration: none;
+		 color:$drawerr-text-color;
+		 transition: background 0.3s ease-in-out;
+		 font-size:$drawerr-item-font-size;
+		 font-weight:$drawerr-item-font-weight;
+	 }
+ 
+	 .section-title {
+		 font-weight:bold;
+		 text-transform: uppercase;
+		 font-size:$drawerr-section-font-size;
+	 }
+
+	/**
 	 * Lists
 	 */
 	ul {
@@ -37,32 +59,6 @@
 		padding-left:calc(#{$drawerr-padding-left} + (#{$drawerr-item-padding-indent} * 3));
 	}
 
-	/**
-	 * Menu items
-	 */
-	.section-title,
-	a {
-		display:flex;
-		align-items: center;
-		padding:$drawerr-padding;
-		border-bottom:1px solid $drawerr-item-border-bottom-color;
-		text-decoration: none;
-		color:$drawerr-text-color;
-		transition: background 0.3s ease-in-out;
-		font-size:$drawerr-item-font-size;
-		font-weight:$drawerr-item-font-weight;
-	}
-
-	a:hover {
-		background:#fff;
-	}
-
-	.section-title {
-		font-weight:bold;
-		text-transform: uppercase;
-		font-size:$drawerr-section-font-size;
-	}
-
 	// Active
 	a.active {
 		position: relative;
@@ -76,6 +72,10 @@
 		top:0;
 		width:4px;
 		background:$drawerr-item-active-before;
+	}
+
+	a:hover {
+		background:#fff;
 	}
 
 	/**
@@ -121,6 +121,22 @@
 	transform:translateX( calc(100vw - #{$drawerr-width} ));
 }
 
+.drawerr-btn--active {
+	span {
+		&:nth-child(1) {
+			transform: translateY(5px) rotate(45deg);
+		}
+
+		&:nth-child(2) {
+			opacity: 0;
+		}
+
+		&:nth-child(3) {
+			transform: translateY(-12px) rotate(-45deg);
+		}
+	}
+}
+
 .drawerr-btn {
 	display:flex;
 	justify-content: space-between;
@@ -146,20 +162,4 @@
 .drawerr-btn--has-menu-text {
 	height:$drawerr-hamburger-height * 2;
 	align-self:flex-end;
-}
-
-.drawerr-btn--active {
-	span {
-		&:nth-child(1) {
-			transform: translateY(5px) rotate(45deg);
-		}
-
-		&:nth-child(2) {
-			opacity: 0;
-		}
-
-		&:nth-child(3) {
-			transform: translateY(-12px) rotate(-45deg);
-		}
-	}
 }
