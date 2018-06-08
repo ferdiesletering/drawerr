@@ -138,3 +138,9 @@
   height: 40px;
   -ms-flex-item-align: end;
   align-self: flex-end; }
+
+.drawerr ul li ul li ul {
+  display: none; }
+
+.drawerr_btn--back {
+  display: none; }
