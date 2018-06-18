@@ -113,49 +113,53 @@ class Drawerr {
     this.toggleBtn.classList.add('drawerr-btn--has-menu-text')
     this.toggleBtn.insertAdjacentHTML('beforeend', `<span class="drawerr-btn__menu-text">${this.btnText}</span>`)
   }
+  
+  initMultilevel() {
+    this.initBreadcrumb();
 
-  // Multilevel class
-  initMultilevel () {
-    // Third multilevel
-    let submenus = this.drawerr.querySelectorAll('ul li ul li ul');
-    this.drawerr.querySelector('ul').setAttribute('drawerr-multilevel', 'base');
-    
-    // Slice submenu from actual menu
-    submenus.forEach((menu,i) => {
-      let menuItemHasChildren = menu.parentElement.querySelector('a');
-      
-      // Add data attribute to retrieve the menu when its called
-      menu.setAttribute('drawerr-multilevel', i);
-      menuItemHasChildren.setAttribute('has-drawerr-multilevel', i);
+    const submenus = this.drawerr.querySelectorAll('ul li ul li ul');
 
-      // Move submenu out of the box
-      //menu.appendChild(this.drawerr);
-      this.drawerr.appendChild(menu);
-      menu.style.display = 'none';
-      
-      menuItemHasChildren.addEventListener('click', (e) => {
-        e.preventDefault();
-        let submenus = document.querySelectorAll('[drawerr-multilevel]')
-        let multilevelID = e.target.getAttribute('has-drawerr-multilevel');
+    submenus.forEach((menu, i) => {
+      menu.classList.add('drawerr-submenu');
+    });
 
-        for(menu in submenus) {
-          if(submenus.hasOwnProperty(menu)) {
-            submenus[menu].style.display = 'none';
-          }
-        }
+    const links = this.drawerr.querySelectorAll('ul a');
 
-        document.querySelector(`[drawerr-multilevel='${multilevelID}']`).style = 'block';
-        console.log(x);
+    if(links.length > 0) {
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const submenu = e.target.parentElement.querySelector('.drawerr-submenu');
+          const ul = this.drawerr.querySelector('ul');
+
+          ul.classList.add('drawerr-slideIn');
+          submenu.classList.add('drawerr-submenu--active');
+        });
       });
+    }
+  }
 
-      document.querySelector('.drawerr_btn--back').addEventListener((e) => {
-        let multilevelID = e.target.getAttribute('has-drawerr-multilevel');
+  initBreadcrumb() {
+    const breadcrumbs = document.querySelectorAll('.drawerr-breadcrumb');
 
+    breadcrumbs.forEach(breadcrumb => {
+      breadcrumb.addEventListener('click', (e) => {
+         const depth = e.target.getAttribute('data-depth');
+         
+         if(depth == 0) {
+          const ul = this.drawerr.querySelector('ul');
+          ul.classList.remove('drawerr-slideIn');
+          document.querySelector('.drawerr-submenu').classList.remove('drawerr-submenu--active');
+         }
       });
     });
   }
 
-  // Create () to hide and show the correct menu and which to show
+  // TODO
+  // Add breadcrumb function to add/remove crumbs
+  // Style breadcrumbs
+  // Better animation for submenu slideout 
+  // Only enable multilevel when argument is true
+  // Refactor js & scss code
 }
 
 export default Drawerr
