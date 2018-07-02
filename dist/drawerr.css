@@ -30,15 +30,15 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    height: 58px;
     padding: 1.2rem 1.2rem 1.2rem 1.5rem;
     border-bottom: 1px solid #E6EAEA;
     text-decoration: none;
     color: #333;
-    -webkit-transition: background 0.3s ease-in-out;
-    transition: background 0.3s ease-in-out;
     font-size: 16px;
     font-weight: 400; }
   .drawerr .section-title {
+    height: 58px;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 17px; }
@@ -152,17 +152,46 @@
   -webkit-transform: translate3d(0, 0px, 0px);
   transform: translate3d(0, 0px, 0px); }
 
-.drawerr .drawerr-slideIn {
-  -webkit-transform: translate3d(-100%, 0px, 0px);
-  transform: translate3d(-100%, 0px, 0px); }
-
 .drawerr-submenu {
   position: absolute;
   top: 0;
   left: 100%;
-  display: none;
   width: 100%;
-  z-index: 2; }
+  height: 100%;
+  z-index: 2;
+  -webkit-transition: -webkit-transform .4s ease;
+  transition: -webkit-transform .4s ease;
+  transition: transform .4s ease;
+  transition: transform .4s ease, -webkit-transform .4s ease;
+  background: #f4f7f6; }
 
 .drawerr-submenu--active {
-  display: block; }
+  z-index: 3;
+  -webkit-transform: translate3d(-100%, 0px, 0px);
+  transform: translate3d(-100%, 0px, 0px); }
+
+.drawerr-breadcrumb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fff; }
+  .drawerr-breadcrumb:hover {
+    background: inherit; }
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid blue;
+  opacity: 1;
+  -webkit-transition: opacity .3s ease, -webkit-transform .6s ease;
+  transition: opacity .3s ease, -webkit-transform .6s ease;
+  transition: opacity .3s ease, transform .6s ease;
+  transition: opacity .3s ease, transform .6s ease, -webkit-transform .6s ease;
+  -webkit-transform: translateX(-5px);
+  transform: translateX(-5px); }
+  .arrow-left.hidden {
+    opacity: 0;
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px); }

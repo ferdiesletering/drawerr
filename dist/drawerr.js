@@ -80,6 +80,12 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _elementClosest = __webpack_require__(2);
+
+var _elementClosest2 = _interopRequireDefault(_elementClosest);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Drawerr = function () {
@@ -102,6 +108,8 @@ var Drawerr = function () {
 
     this.openEvent = new Event('drawerr-open');
     this.closeEvent = new Event('drawerr-close');
+
+    this.activeSubmenu = false;
   }
 
   _createClass(Drawerr, [{
@@ -122,6 +130,9 @@ var Drawerr = function () {
       this.drawerr = document.querySelector(this.drawerrSelector);
       this.toggleBtn = document.querySelector(this.toggleBtn);
       this.navbar = document.querySelector(this.navbar);
+      this.arrowLeft = document.querySelector('.arrow-left');
+      this.breadcrumb = document.querySelector('.drawerr-breadcrumb');
+      this.breadcrumbText = this.breadcrumb.querySelector('.drawerr-breadcrumb__text');
 
       this.beforeVisible();
 
@@ -234,8 +245,17 @@ var Drawerr = function () {
             var submenu = e.target.parentElement.querySelector('.drawerr-submenu');
             var ul = _this2.drawerr.querySelector('ul');
 
-            ul.classList.add('drawerr-slideIn');
-            submenu.classList.add('drawerr-submenu--active');
+            if (submenu !== null) {
+              //ul.classList.add('drawerr-slideIn');
+              //submenus.classList.remove('.drawerr-submenu--active');
+              console.log('add active class');
+              submenu.classList.add('drawerr-submenu--active');
+              _this2.setBreadcrumbText(e.target.textContent);
+              _this2.activeSubmenu = submenu;
+              _this2.toggleArrow('show');
+
+              e.preventDefault();
+            }
           });
         });
       }
@@ -245,27 +265,35 @@ var Drawerr = function () {
     value: function initBreadcrumb() {
       var _this3 = this;
 
-      var breadcrumbs = document.querySelectorAll('.drawerr-breadcrumb');
+      this.breadcrumb.addEventListener('click', function (e) {
+        if (!_this3.activeSubmenu) {
+          return;
+        }
 
-      breadcrumbs.forEach(function (breadcrumb) {
-        breadcrumb.addEventListener('click', function (e) {
-          var depth = e.target.getAttribute('data-depth');
+        _this3.activeSubmenu.classList.remove('drawerr-submenu--active');
+        _this3.activeSubmenu = _this3.activeSubmenu.parentElement.parentElement;
 
-          if (depth == 0) {
-            var ul = _this3.drawerr.querySelector('ul');
-            ul.classList.remove('drawerr-slideIn');
-            document.querySelector('.drawerr-submenu').classList.remove('drawerr-submenu--active');
-          }
-        });
+        if (!_this3.activeSubmenu.classList.contains('drawerr-submenu--active')) {
+          console.log('hide arrow');
+          _this3.toggleArrow('hidden');
+          _this3.setBreadcrumbText('Menu');
+        } else {
+          _this3.setBreadcrumbText(_this3.activeSubmenu.parentElement.querySelector('a').textContent);
+        }
       });
     }
-
+  }, {
+    key: 'toggleArrow',
+    value: function toggleArrow(action) {
+      action == 'show' ? this.arrowLeft.classList.remove('hidden') : this.arrowLeft.classList.add('hidden');
+    }
+  }, {
+    key: 'setBreadcrumbText',
+    value: function setBreadcrumbText(text) {
+      this.breadcrumbText.textContent = text;
+    }
     // TODO
-    // Add breadcrumb function to add/remove crumbs
-    // Style breadcrumbs
-    // Better animation for submenu slideout 
-    // Only enable multilevel when argument is true
-    // Refactor js & scss code
+    // The back button should look for parent li and remove it own active class so it slides back
 
   }]);
 
@@ -294,6 +322,45 @@ window.drawerr = _drawerr2.default; /**
 
 
 module.exports = _drawerr2.default;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+// element-closest | CC0-1.0 | github.com/jonathantneal/closest
+
+(function (ElementProto) {
+	if (typeof ElementProto.matches !== 'function') {
+		ElementProto.matches = ElementProto.msMatchesSelector || ElementProto.mozMatchesSelector || ElementProto.webkitMatchesSelector || function matches(selector) {
+			var element = this;
+			var elements = (element.document || element.ownerDocument).querySelectorAll(selector);
+			var index = 0;
+
+			while (elements[index] && elements[index] !== element) {
+				++index;
+			}
+
+			return Boolean(elements[index]);
+		};
+	}
+
+	if (typeof ElementProto.closest !== 'function') {
+		ElementProto.closest = function closest(selector) {
+			var element = this;
+
+			while (element && element.nodeType === 1) {
+				if (element.matches(selector)) {
+					return element;
+				}
+
+				element = element.parentNode;
+			}
+
+			return null;
+		};
+	}
+})(window.Element.prototype);
+
 
 /***/ })
 /******/ ]);

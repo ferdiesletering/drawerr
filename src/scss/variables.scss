@@ -11,10 +11,8 @@ $drawerr-scrollbar: 4px !default;
 $drawerr-scrollbar-thumb: darken(#e3e3e3, 50%) !default;
 $drawerr-scrollbar-track-color: #e3e3e3 !default;
 
-// Section title
-$drawerr-section-font-size:17px;
-
 // Menu items
+$drawerr-item-height:58px;
 $drawerr-padding-left: 1.5rem !default;
 $drawerr-padding: 1.2rem 1.2rem 1.2rem $drawerr-padding-left !default;
 $drawerr-item-padding-indent:.8rem;
@@ -27,6 +25,13 @@ $drawerr-item-active-color: #49c5b6 !default;
 $drawerr-padding-half: $drawerr-padding / 2;
 $drawerr-translate: translateX(-100%) translateX(-1vw);
 $drawerr-translate-rtl: calc( 100vw + #{$drawerr-shadow-depth});
+
+// Section title
+$drawerr-section-height:$drawerr-item-height !default;
+$drawerr-section-font-size:17px !default;
+
+// Breadcrumb
+$drawerr-breadcrumb-bg: #fff !default; 
 
 // Hamburger
 $drawerr-hamburger-width:40px !default;
