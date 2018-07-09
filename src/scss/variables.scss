@@ -2,9 +2,9 @@ $drawerr-bg: #f4f7f6 !default;
 $drawerr-text-color: #333 !default;
 $drawerr-navbar-height: 80px !default;
 $drawerr-shadow-depth: 10px !default;
-$drawerr-shadow-depth: 1vw;
+$drawerr-shadow-depth: 1vw !default;
 $drawerr-width: 80% !default;
-$drawerr-transition: transform 0.5s ease-in-out;
+$drawerr-transition: transform 0.5s ease-in-out !default;
 
 // Scrollbar
 $drawerr-scrollbar: 4px !default;
@@ -12,12 +12,13 @@ $drawerr-scrollbar-thumb: darken(#e3e3e3, 50%) !default;
 $drawerr-scrollbar-track-color: #e3e3e3 !default;
 
 // Menu items
-$drawerr-item-height:58px;
+$drawerr-item-height:58px !default;
 $drawerr-padding-left: 1.5rem !default;
-$drawerr-padding: 1.2rem 1.2rem 1.2rem $drawerr-padding-left !default;
-$drawerr-item-padding-indent:.8rem;
-$drawerr-item-font-size:16px;
-$drawerr-item-font-weight:400;
+$drawerr-spacer: 1.2rem !default;
+$drawerr-padding: $drawerr-spacer $drawerr-spacer $drawerr-spacer $drawerr-padding-left !default;
+$drawerr-item-padding-indent:.8rem !default;
+$drawerr-item-font-size:16px !default;
+$drawerr-item-font-weight:400 !default;
 $drawerr-item-border-bottom-color: #E6EAEA !default;
 $drawerr-item-active-before: #49c5b6 !default;
 $drawerr-item-active-color: #49c5b6 !default;
@@ -30,8 +31,9 @@ $drawerr-translate-rtl: calc( 100vw + #{$drawerr-shadow-depth});
 $drawerr-section-height:$drawerr-item-height !default;
 $drawerr-section-font-size:17px !default;
 
-// Breadcrumb
-$drawerr-breadcrumb-bg: #fff !default; 
+// Navigation
+$drawerr-navigation-bg: $drawerr-item-active-color !default; 
+$drawerr-navigation-color: #fff !default;
 
 // Hamburger
 $drawerr-hamburger-width:40px !default;
