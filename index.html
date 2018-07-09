@@ -66,7 +66,6 @@
             padding:80px 15px 15px;
             line-height:1.5rem;
         }
-
     </style>
 </head>
 <body>
@@ -109,18 +108,10 @@
 
 </main>
 <nav id="drawerr" class="drawerr--init">
-    <div class="navigation">
-        <a class="drawerr-breadcrumb" href="#">
-            <span class="arrow-left hidden"></span>
-            <span class="drawerr-breadcrumb__text">Menu</span>
-        </a>
-    </div>
+    <div class="drawerr-navigation-container"></div>
     <ul>
         <li>
-            <span class="section-title">
-                <i class="fa fa-server" aria-hidden="true"></i>
-                Cloud services
-            </span>
+            <a href="#">Cloud services</a>
             <ul>
                 <li>
                     <a class="active" href="http://www.google.nl">Amazon AWS</a>
@@ -131,10 +122,7 @@
         </li>
 
         <li>
-            <span class="section-title">
-                <i class="fa fa-free-code-camp" aria-hidden="true"></i>
-                Programming languages
-            </span>
+            <a href="#">Programming languages</a>
             <ul>
                 <li>
                     <a href="#">JavaScript</a>
@@ -143,7 +131,7 @@
                             <a href="#">React</a>
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://www.google.nl">
                                         PreReact
                                     </a>
                                     <a href="#">
@@ -192,7 +180,7 @@
 <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
 <script src="dist/drawerr.js"></script>
 <script>
-		new drawerr().init({
+		new drawerrMultilevel({
           drawerr: '#drawerr'
         });
 </script>

@@ -26,9 +26,5 @@
     "stylelint-config-recommended": "^2.0.1",
     "stylelint-webpack-plugin": "^0.10.1",
     "webpack": "^2.6.1"
-  },
-  "dependencies": {
-    "element-closest": "^2.0.2",
-    "font-awesome": "FortAwesome/Font-Awesome"
   }
 }

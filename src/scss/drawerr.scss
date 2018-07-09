@@ -31,28 +31,28 @@
 
   &:not(.drawerr-multilevel) {
     // Depth 1
-    ul ul a:not(.drawerr__navigation) {
+    ul ul a {
       padding-left: calc(
         #{$drawerr-padding-left} + #{$drawerr-item-padding-indent}
       );
     }
 
     // Depth 2
-    ul ul ul a:not(.drawerr__navigation) {
+    ul ul ul a {
       padding-left: calc(
         #{$drawerr-padding-left} + (#{$drawerr-item-padding-indent} * 2)
       );
     }
 
     // Depth 3
-    ul ul ul ul a:not(.drawerr__navigation) {
+    ul ul ul ul a {
       padding-left: calc(
         #{$drawerr-padding-left} + (#{$drawerr-item-padding-indent} * 3)
       );
     }
   }
 
-  a:not(.drawerr__navigation) {
+  a:not(.drawerr-navigation) {
     display: flex;
     align-items: center;
     height: $drawerr-item-height;
@@ -68,10 +68,6 @@
     margin: 0;
     padding: 0;
     list-style: none;
-
-    &:first-child {
-      position: relative;
-    }
   }
 
   a {
@@ -157,22 +153,27 @@
 
 /* Multilevel */
 .drawerr-multilevel {
-  .drawerr {
-    > ul {
-      position: absolute;
-      width: 100%;
-      transition: transform 0.4s ease-in;
-      transform: translate3d(0, 0px, 0px);
-    }
+  > ul {
+    position: absolute;
+    width: 100%;
+    transition: transform 0.4s ease-in;
+    transform: translate3d(0, 0px, 0px);
+  }
+
+  ul {
+    position:relative;
+    height:calc(100% - #{$drawerr-navigation-height});
   }
 
   .drawerr-navigation {
     display: flex;
     align-items: center;
+    height:$drawerr-navigation-height;
     padding: ($drawerr-spacer / 2) $drawerr-spacer;
     background: $drawerr-navigation-bg;
     color: $drawerr-navigation-color;
     text-transform: uppercase;
+    text-decoration:none;
 
     &:hover {
       background: $drawerr-navigation-bg;

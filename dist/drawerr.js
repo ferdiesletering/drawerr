@@ -64,78 +64,57 @@ var drawerr =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = function(originalModule) {
-	if(!originalModule.webpackPolyfill) {
-		var module = Object.create(originalModule);
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		Object.defineProperty(module, "exports", {
-			enumerable: true,
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class Drawerr {
-  constructor() {
-    this.bodyNoScrollClass = "drawerr-no-scroll";
-    this.drawerOpenClass = "drawerr--open";
-    this.toggleBtnActiveClass = "drawerr-btn--active";
-    this.slideFromClass = "drawerr-slide-from-right";
 
-    this.options = {
-      btnText: "MENU",
-      drawerr: "#drawerr",
-      navbar: "header",
-      toggleBtn: ".toggleDrawerr",
-      slideFrom: "left"
-    };
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var settings = {
+  bodyNoScrollClass: "drawerr-no-scroll",
+  drawerOpenClass: "drawerr--open",
+  toggleBtnActiveClass: "drawerr-btn--active",
+  slideFromClass: "drawerr-slide-from-right"
+};
+
+var options = {
+  btnText: "MENU",
+  drawerr: "#drawerr",
+  navbar: "header",
+  toggleBtn: ".toggleDrawerr",
+  slideFrom: "left"
+};
+
+var Drawerr = function () {
+  function Drawerr() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, Drawerr);
+
+    this.settings = settings;
+    this.options = Object.assign(options, args);
+
+    // Events
     this.openEvent = new Event("drawerr-open");
     this.closeEvent = new Event("drawerr-close");
-  }
-
-  init(args = {}) {
-    const options = Object.assign(this.options, args);
-
-    this.drawerrSelector = options.drawerr;
-    this.toggleBtn = options.toggleBtn;
-    this.navbar = options.navbar;
-    this.slideFrom = options.slideFrom;
-    this.btnText = options.btnText;
-    this.navigationContainer = options.navigationContainer;
 
     // Dom elements
     this.body = document.querySelector("body");
-    this.drawerr = document.querySelector(this.drawerrSelector);
-    this.toggleBtn = document.querySelector(this.toggleBtn);
-    this.navbar = document.querySelector(this.navbar);
+    this.drawerr = document.querySelector(this.options.drawerr);
+    this.toggleBtn = document.querySelector(this.options.toggleBtn);
+    this.navbar = document.querySelector(this.options.navbar);
 
     this.beforeVisible();
 
@@ -143,234 +122,282 @@ class Drawerr {
     this.drawerr.classList.remove("drawerr--init");
     this.drawerr.classList.add("drawerr");
     this.toggleBtn.classList.add("drawerr-btn");
+
     this.events();
   }
 
-  beforeVisible() {
-    this.setSlideFromDirection();
-    this.drawerrOffsetTop();
-    this.insertHamburgerText();
-  }
-
-  drawerrOffsetTop() {
-    this.drawerr.style.top = this.navbar.offsetHeight + "px";
-  }
-
-  setSlideFromDirection() {
-    if (this.slideFrom === "right")
-      this.drawerr.classList.add(this.slideFromClass);
-  }
-
-  events() {
-    this.toggleBtn.addEventListener("click", () => {
-      this.toggleDrawer();
-    });
-
-    document.addEventListener("click", e => {
-      this.bodyClick(e);
-    });
-
-    window.onresize = e => {
-      this.onResize();
-    };
-  }
-
-  toggleDrawer() {
-    this.addOrRemoveClass(this.body, this.bodyNoScrollClass);
-    this.addOrRemoveClass(this.drawerr, this.drawerOpenClass);
-    this.addOrRemoveClass(this.toggleBtn, this.toggleBtnActiveClass);
-    this.dispatchEvents();
-  }
-
-  onResize() {
-    this.drawerrOffsetTop();
-  }
-
-  bodyClick(e) {
-    if (this.toggleBtn.contains(e.target)) return;
-
-    if (
-      !this.drawerr.contains(e.target) &&
-      document
-        .querySelector(this.drawerrSelector)
-        .classList.contains(this.drawerOpenClass)
-    ) {
-      this.toggleDrawer();
+  _createClass(Drawerr, [{
+    key: "beforeVisible",
+    value: function beforeVisible() {
+      this.setSlideFromDirection();
+      this.drawerrOffsetTop();
+      this.insertHamburgerText();
     }
-  }
-
-  dispatchEvents() {
-    if (this.drawerr.classList.contains(this.drawerOpenClass)) {
-      document.dispatchEvent(this.openEvent);
-    } else {
-      document.dispatchEvent(this.closeEvent);
+  }, {
+    key: "drawerrOffsetTop",
+    value: function drawerrOffsetTop() {
+      this.drawerr.style.top = options.navbar.offsetHeight + "px";
     }
-  }
-
-  addOrRemoveClass(el, addClass) {
-    if (el.classList.contains(addClass)) {
-      return el.classList.remove(addClass);
+  }, {
+    key: "setSlideFromDirection",
+    value: function setSlideFromDirection() {
+      if (options.slideFrom === "right") this.drawerr.classList.add(this.settings.slideFromClass);
     }
-    el.classList.add(addClass);
-  }
+  }, {
+    key: "events",
+    value: function events() {
+      var _this = this;
 
-  insertHamburgerText() {
-    if (this.btnText.length === 0) return;
-
-    this.toggleBtn.classList.add("drawerr-btn--has-menu-text");
-    this.toggleBtn.insertAdjacentHTML(
-      "beforeend",
-      `<span class="drawerr-btn__menu-text">${this.btnText}</span>`
-    );
-  }
-}
-
-class DrawerrMultilevel extends Drawerr {
-  constructor() {
-    super();
-
-    this.activeSubmenu = false;
-    this.submenus = false;
-    this.navigationTextClass = "drawerr-navigation";
-    this.hasSubmenuClass = "drawerr-item-has-submenu";
-    this.submenuClass = "drawerr-submenu";
-
-    this.options.navigationContainer = ".drawerr-navigation-container";
-  }
-
-  init(args = {}) {
-    super.init(args);
-
-    this.drawerr.classList.add('drawerr-multilevel');
-
-    this.insertNavigation();
-    
-    // Submenu's
-    this.submenus = this.drawerr.querySelectorAll("ul li ul");
-    this.addClassToSubmenus();
-
-    // Setup navigation
-    this.navigation = document.querySelector(`.${this.navigationTextClass}`);
-
-    this.breadcrumbText = this.navigation.querySelector(
-      `.${this.navigationTextClass}__text`
-    );
-    this.arrowLeft = document.querySelector(
-      `.${this.navigationTextClass}__icon`
-    );
-
-    // Events
-    this.linkOnClick();
-    this.navigationOnClick();
-  }
-
-  insertNavigation() {
-    this.navigationContainer = document.querySelector(this.navigationContainer);
-
-    this.navigationContainer.insertAdjacentHTML(
-      "afterbegin",
-      ` <a class="${this.navigationTextClass}" href="#"><span class="${
-        this.navigationTextClass
-      }__icon hidden"></span><span class="${
-        this.navigationTextClass
-      }__text">Menu</span></a>`
-    );
-  }
-
-  addClassToSubmenus() {
-    this.submenus.forEach((menu, i) => {
-      menu.classList.add(this.submenuClass);
-    });
-  }
-
-  linkOnClick() {
-    const links = this.drawerr.querySelectorAll("ul a");
-
-    if (links.length > 0) {
-      links.forEach(link => {
-        parent = link.parentElement;
-
-        if(parent.children.item(parent.children.length - 1).classList.contains('drawerr-submenu')) {
-          link.classList.add(this.hasSubmenuClass);
-        }
-
-        link.addEventListener("click", e => {
-          e.preventDefault();
-          const link = e.target;
-          const submenu = link.parentElement.querySelector(
-            `.${this.submenuClass}`
-          );
-          const ul = this.drawerr.querySelector("ul");
-
-          if (submenu !== null) {
-            submenu.classList.add("drawerr-submenu--active");
-            this.setNavigationText(link.textContent);
-            this.activeSubmenu = submenu;
-            this.hideShowNavigationIcon("show");
-
-            e.preventDefault();
-          }
-        });
+      this.toggleBtn.addEventListener("click", function () {
+        _this.toggleDrawer();
       });
+
+      document.addEventListener("click", function (e) {
+        _this.bodyClick(e);
+      });
+
+      window.onresize = function (e) {
+        _this.onResize();
+      };
     }
-  }
+  }, {
+    key: "toggleDrawer",
+    value: function toggleDrawer() {
+      this.addOrRemoveClass(this.body, this.settings.bodyNoScrollClass);
+      this.addOrRemoveClass(this.drawerr, this.settings.drawerOpenClass);
+      this.addOrRemoveClass(this.toggleBtn, this.settings.toggleBtnActiveClass);
+      this.dispatchEvents();
+    }
+  }, {
+    key: "onResize",
+    value: function onResize() {
+      this.drawerrOffsetTop();
+    }
+  }, {
+    key: "bodyClick",
+    value: function bodyClick(e) {
+      if (this.toggleBtn.contains(e.target)) return;
 
-  navigationOnClick() {
-    this.navigation.addEventListener("click", () => {
-      if (!this.activeSubmenu) {
-        return;
+      if (!this.drawerr.contains(e.target) && document.querySelector(options.drawerrSelector).classList.contains(this.settings.drawerOpenClass)) {
+        this.toggleDrawer();
       }
-
-      this.activeSubmenu.classList.remove("drawerr-submenu--active");
-      this.activeSubmenu = this.activeSubmenu.parentElement.parentElement;
-
-      if (!this.activeSubmenu.classList.contains("drawerr-submenu--active")) {
-        this.hideShowNavigationIcon("hidden");
-        this.setNavigationText("Menu");
+    }
+  }, {
+    key: "dispatchEvents",
+    value: function dispatchEvents() {
+      if (this.drawerr.classList.contains(this.settings.drawerOpenClass)) {
+        document.dispatchEvent(this.openEvent);
       } else {
-        this.setNavigationText(
-          this.activeSubmenu.parentElement.querySelector("a").textContent
-        );
+        document.dispatchEvent(this.closeEvent);
       }
-    });
-  }
+    }
+  }, {
+    key: "addOrRemoveClass",
+    value: function addOrRemoveClass(el, addClass) {
+      if (el.classList.contains(addClass)) {
+        return el.classList.remove(addClass);
+      }
+      el.classList.add(addClass);
+    }
+  }, {
+    key: "insertHamburgerText",
+    value: function insertHamburgerText() {
+      if (options.btnText.length === 0) return;
 
-  setNavigationText(text) {
-    this.breadcrumbText.textContent = text;
-  }
+      this.toggleBtn.classList.add("drawerr-btn--has-menu-text");
+      this.toggleBtn.insertAdjacentHTML("beforeend", "<span class=\"drawerr-btn__menu-text\">" + options.btnText + "</span>");
+    }
+  }]);
 
-  hideShowNavigationIcon(action) {
-    action == "show"
-      ? this.arrowLeft.classList.remove("hidden")
-      : this.arrowLeft.classList.add("hidden");
-  }
-}
+  return Drawerr;
+}();
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  Drawerr,
-  DrawerrMultilevel
-});
-
+exports.default = Drawerr;
 
 /***/ }),
-/* 2 */,
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__drawerr__ = __webpack_require__(1);
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _drawerr = __webpack_require__(0);
+
+var _drawerr2 = _interopRequireDefault(_drawerr);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var multilevelSettings = {
+  activeSubmenu: false,
+  submenus: false,
+  navigationTextClass: "drawerr-navigation",
+  hasSubmenuClass: "drawerr-item-has-submenu",
+  submenuClass: "drawerr-submenu",
+  submenuActiveClass: "drawerr-submenu--active",
+  navigationContainerClass: "drawerr-navigation-container",
+  hiddenClass: 'hidden'
+};
+
+var DrawerrMultilevel = function (_Drawerr) {
+  _inherits(DrawerrMultilevel, _Drawerr);
+
+  function DrawerrMultilevel(args) {
+    _classCallCheck(this, DrawerrMultilevel);
+
+    var _this = _possibleConstructorReturn(this, (DrawerrMultilevel.__proto__ || Object.getPrototypeOf(DrawerrMultilevel)).call(this, args));
+
+    _this.multilevelSettings = multilevelSettings;
+    _this.drawerr.classList.add('drawerr-multilevel');
+
+    // Setup navigation
+    _this.insertNavigation();
+    _this.navigation = document.querySelector("." + _this.multilevelSettings.navigationTextClass);
+
+    _this.navigationText = _this.navigation.querySelector("." + _this.multilevelSettings.navigationTextClass + "__text");
+    _this.navigationIcon = document.querySelector("." + _this.multilevelSettings.navigationTextClass + "__icon");
+
+    // Submenu's
+    _this.multilevelSettings.submenus = _this.drawerr.querySelectorAll("ul li ul");
+    _this.addClassToSubmenus();
+
+    // Events
+    _this.bindLinks();
+    _this.navigationOnClick();
+    return _this;
+  }
+
+  _createClass(DrawerrMultilevel, [{
+    key: "insertNavigation",
+    value: function insertNavigation() {
+      this.navigationContainer = document.querySelector("." + this.multilevelSettings.navigationContainerClass);
+
+      if (this.navigationContainer === null) {
+        this.navigationContainer = this.drawerr.insertAdjacentHTML("afterbegin", "<div class=\"" + this.multilevelSettings.navigationContainerClass + "\"></div>");
+
+        this.navigationContainer = document.querySelector("." + this.multilevelSettings.navigationContainerClass);
+      }
+
+      this.navigationContainer.insertAdjacentHTML("afterbegin", " <a class=\"" + this.multilevelSettings.navigationTextClass + "\" href=\"#\"><span class=\"" + this.multilevelSettings.navigationTextClass + "__icon " + this.multilevelSettings.hidden + "\"></span><span class=\"" + this.multilevelSettings.navigationTextClass + "__text\">Menu</span></a>");
+    }
+  }, {
+    key: "addClassToSubmenus",
+    value: function addClassToSubmenus() {
+      var _this2 = this;
+
+      Array.prototype.forEach.call(this.multilevelSettings.submenus, function (menu) {
+        menu.classList.add(_this2.multilevelSettings.submenuClass);
+      });
+    }
+  }, {
+    key: "bindLinks",
+    value: function bindLinks() {
+      var _this3 = this;
+
+      var links = this.drawerr.querySelectorAll("ul a");
+
+      if (links.length > 0) {
+        Array.prototype.forEach.call(links, function (link) {
+          parent = link.parentElement;
+
+          if (parent.children.item(parent.children.length - 1).classList.contains(_this3.multilevelSettings.submenuClass)) {
+            link.classList.add(_this3.multilevelSettings.hasSubmenuClass);
+          }
+
+          link.addEventListener("click", _this3.linkOnClick.bind(_this3));
+        });
+      }
+    }
+  }, {
+    key: "linkOnClick",
+    value: function linkOnClick(e) {
+
+      var link = e.target;
+      var submenu = link.parentElement.querySelector("." + this.multilevelSettings.submenuClass);
+      var ul = this.drawerr.querySelector("ul");
+
+      if (submenu !== null) {
+        submenu.classList.add(this.multilevelSettings.submenuActiveClass);
+        this.setNavigationText(link.textContent);
+        this.multilevelSettings.activeSubmenu = submenu;
+        this.hideShowNavigationIcon("show");
+        e.preventDefault();
+      }
+    }
+  }, {
+    key: "navigationOnClick",
+    value: function navigationOnClick() {
+      var _this4 = this;
+
+      this.navigation.addEventListener("click", function () {
+        if (!_this4.multilevelSettings.activeSubmenu) {
+          return;
+        }
+
+        _this4.multilevelSettings.activeSubmenu.classList.remove(_this4.multilevelSettings.submenuActiveClass);
+        _this4.multilevelSettings.activeSubmenu = _this4.multilevelSettings.activeSubmenu.parentElement.parentElement;
+
+        if (!_this4.multilevelSettings.activeSubmenu.classList.contains("drawerr-submenu--active")) {
+          _this4.hideShowNavigationIcon(_this4.multilevelSettings.hiddenClass);
+          _this4.setNavigationText("Menu");
+        } else {
+          _this4.setNavigationText(_this4.multilevelSettings.activeSubmenu.parentElement.querySelector("a").textContent);
+        }
+      });
+    }
+  }, {
+    key: "setNavigationText",
+    value: function setNavigationText(text) {
+      this.navigationText.textContent = text;
+    }
+  }, {
+    key: "hideShowNavigationIcon",
+    value: function hideShowNavigationIcon(action) {
+      action == "show" ? this.navigationIcon.classList.remove(this.multilevelSettings.hiddenClass) : this.navigationIcon.classList.add(this.multilevelSettings.hiddenClass);
+    }
+  }]);
+
+  return DrawerrMultilevel;
+}(_drawerr2.default);
+
+exports.default = DrawerrMultilevel;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _drawerr = __webpack_require__(0);
+
+var _drawerr2 = _interopRequireDefault(_drawerr);
+
+var _drawerrMultilevel = __webpack_require__(1);
+
+var _drawerrMultilevel2 = _interopRequireDefault(_drawerrMultilevel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /**
  * We need this main function to correctly exports drawerr
  * see http://siawyoung.com/coding/javascript/exporting-es6-modules-as-single-scripts-with-webpack.html
  */
+window.drawerr = _drawerr2.default;
+window.drawerrMultilevel = _drawerrMultilevel2.default;
 
-
-window.drawerr = __WEBPACK_IMPORTED_MODULE_0__drawerr__["a" /* default */].Drawerr;
-window.drawerrMultilevel = __WEBPACK_IMPORTED_MODULE_0__drawerr__["a" /* default */].DrawerrMultilevel;
-
-module.exports = __WEBPACK_IMPORTED_MODULE_0__drawerr__["a" /* default */];
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)(module)))
+module.exports = _drawerr2.default;
 
 /***/ })
 /******/ ]);
