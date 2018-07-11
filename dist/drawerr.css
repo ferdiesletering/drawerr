@@ -29,9 +29,7 @@
   .drawerr:not(.drawerr-multilevel) ul ul ul ul a {
     padding-left: calc( 1.5rem + (0.8rem * 3)); }
   .drawerr a:not(.drawerr-navigation) {
-    display: -webkit-flex;
     display: flex;
-    -webkit-align-items: center;
     align-items: center;
     height: 58px;
     padding: 1.2rem 1.2rem 1.2rem 1.5rem;
@@ -84,13 +82,9 @@
   transform: translateY(-12px) rotate(-45deg); }
 
 .drawerr-btn {
-  display: -webkit-flex;
   display: flex;
-  -webkit-justify-content: space-between;
   justify-content: space-between;
-  -webkit-flex-direction: column;
   flex-direction: column;
-  -webkit-align-self: center;
   align-self: center;
   width: 40px;
   height: 20px;
@@ -107,7 +101,6 @@
 
 .drawerr-btn--has-menu-text {
   height: 40px;
-  -webkit-align-self: flex-end;
   align-self: flex-end; }
 
 /* Multilevel */
@@ -125,18 +118,16 @@
   height: calc(100% - 60px); }
 
 .drawerr-multilevel .drawerr-navigation {
-  display: -webkit-flex;
   display: flex;
-  -webkit-align-items: center;
   align-items: center;
   height: 60px;
-  padding: 0.6rem 1.2rem;
-  background: #49c5b6;
-  color: #fff;
+  padding: 1.2rem 1.2rem 1.2rem 1.5rem;
+  background: #f4f7f6;
+  color: #333;
   text-transform: uppercase;
   text-decoration: none; }
   .drawerr-multilevel .drawerr-navigation:hover {
-    background: #49c5b6;
+    background: #f4f7f6;
     text-decoration: none; }
 
 .drawerr-multilevel .drawerr-navigation__icon {
@@ -145,21 +136,30 @@
   height: 0;
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
-  border-right: 6px solid #fff;
+  border-right: 6px solid #333;
   opacity: 1;
   transition: opacity 0.3s ease, -webkit-transform 0.6s ease;
   transition: opacity 0.3s ease, transform 0.6s ease;
   transition: opacity 0.3s ease, transform 0.6s ease, -webkit-transform 0.6s ease;
-  -webkit-transform: translateX(-12px);
-  transform: translateX(-12px); }
+  -webkit-transform: translateX(0);
+  transform: translateX(0); }
   .drawerr-multilevel .drawerr-navigation__icon.hidden {
     opacity: 0;
-    -webkit-transform: translateX(0);
-    transform: translateX(0); }
+    -webkit-transform: translateX(6px);
+    transform: translateX(6px); }
+    .drawerr-multilevel .drawerr-navigation__icon.hidden + .drawerr-navigation__text {
+      -webkit-transform: translateX(0);
+      transform: translateX(0); }
+  .drawerr-multilevel .drawerr-navigation__icon + .drawerr-navigation__text {
+    transition: -webkit-transform 0.6s ease;
+    transition: transform 0.6s ease;
+    transition: transform 0.6s ease, -webkit-transform 0.6s ease;
+    -webkit-transform: translateX(12px);
+    transform: translateX(12px); }
 
 .drawerr-multilevel .drawerr-navigation__text {
   display: block;
-  color: #fff; }
+  color: #333; }
 
 .drawerr-multilevel .drawerr-submenu {
   position: absolute;

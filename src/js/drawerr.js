@@ -85,7 +85,7 @@ export default class Drawerr {
     if (
       !this.drawerr.contains(e.target) &&
       document
-        .querySelector(options.drawerrSelector)
+        .querySelector(options.drawerr)
         .classList.contains(this.settings.drawerOpenClass )
     ) {
       this.toggleDrawer();

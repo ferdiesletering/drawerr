@@ -169,7 +169,8 @@
     display: flex;
     align-items: center;
     height:$drawerr-navigation-height;
-    padding: ($drawerr-spacer / 2) $drawerr-spacer;
+    //padding: ($drawerr-spacer / 2) $drawerr-spacer;
+    padding:$drawerr-padding;
     background: $drawerr-navigation-bg;
     color: $drawerr-navigation-color;
     text-transform: uppercase;
@@ -190,11 +191,20 @@
     border-right: 6px solid $drawerr-navigation-color;
     opacity: 1;
     transition: opacity 0.3s ease, transform 0.6s ease;
-    transform: translateX(-12px);
+    transform: translateX(0);
 
     &.hidden {
       opacity: 0;
-      transform: translateX(0);
+      transform: translateX(6px);
+
+      + .drawerr-navigation__text {
+        transform: translateX(0);
+      }
+    }
+
+    + .drawerr-navigation__text {
+      transition:transform 0.6s ease;
+      transform: translateX(12px);
     }
   }
 

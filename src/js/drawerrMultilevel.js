@@ -11,10 +11,16 @@ const multilevelSettings = {
   hiddenClass: 'hidden'
 };
 
+const multilevelOptions = {
+  navigationText: 'MENU'
+};
+
 export default class DrawerrMultilevel extends Drawerr {
   constructor(args) {
     super(args);
-  
+
+    this.options.navigationText = args.navigationText || multilevelOptions.navigationText;
+
     this.multilevelSettings = multilevelSettings;
     this.drawerr.classList.add('drawerr-multilevel');
 
@@ -36,6 +42,7 @@ export default class DrawerrMultilevel extends Drawerr {
     // Events
     this.bindLinks();
     this.navigationOnClick();
+    this.bindOnClose();
   }
 
   insertNavigation() {
@@ -54,9 +61,9 @@ export default class DrawerrMultilevel extends Drawerr {
       "afterbegin",
       ` <a class="${this.multilevelSettings.navigationTextClass}" href="#"><span class="${
       this.multilevelSettings.navigationTextClass
-      }__icon ${this.multilevelSettings.hidden}"></span><span class="${
+      }__icon ${this.multilevelSettings.hiddenClass}"></span><span class="${
       this.multilevelSettings.navigationTextClass
-      }__text">Menu</span></a>`
+      }__text">${this.options.navigationText}</span></a>`
     );
   }
 
@@ -66,10 +73,25 @@ export default class DrawerrMultilevel extends Drawerr {
     });
   }
 
+  reset() {
+     setTimeout(() => {
+       Array.prototype.forEach.call(this.multilevelSettings.submenus, menu => {
+         menu.classList.remove(this.multilevelSettings.submenuActiveClass);
+       });  
+
+       this.setNavigationText(this.options.navigationText);
+       this.hideShowNavigationIcon();
+    },300);
+  }
+
+  bindOnClose() {
+    document.addEventListener('drawerr-close', this.reset.bind(this))
+  }
+
   bindLinks() {
     const links = this.drawerr.querySelectorAll("ul a");
 
-    if (links.length > 0) {
+    if (links.length) {
       Array.prototype.forEach.call(links, link => {
         parent = link.parentElement;
 
@@ -101,16 +123,14 @@ export default class DrawerrMultilevel extends Drawerr {
 
   navigationOnClick() {
     this.navigation.addEventListener("click", () => {
-      if (!this.multilevelSettings.activeSubmenu) {
-        return;
-      }
+      if (!this.multilevelSettings.activeSubmenu) return;
 
       this.multilevelSettings.activeSubmenu.classList.remove(this.multilevelSettings.submenuActiveClass);
       this.multilevelSettings.activeSubmenu = this.multilevelSettings.activeSubmenu.parentElement.parentElement;
 
       if (!this.multilevelSettings.activeSubmenu.classList.contains("drawerr-submenu--active")) {
         this.hideShowNavigationIcon(this.multilevelSettings.hiddenClass);
-        this.setNavigationText("Menu");
+        this.setNavigationText(this.options.navigationText);
       } else {
         this.setNavigationText(
           this.multilevelSettings.activeSubmenu.parentElement.querySelector("a").textContent

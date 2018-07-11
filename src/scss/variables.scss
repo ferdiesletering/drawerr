@@ -32,8 +32,8 @@ $drawerr-section-height:$drawerr-item-height !default;
 $drawerr-section-font-size:17px !default;
 
 // Navigation
-$drawerr-navigation-bg: $drawerr-item-active-color !default; 
-$drawerr-navigation-color: #fff !default;
+$drawerr-navigation-bg: $drawerr-bg !default; 
+$drawerr-navigation-color: $drawerr-text-color !default;
 $drawerr-navigation-height:60px;
 
 // Hamburger

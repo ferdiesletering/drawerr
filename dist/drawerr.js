@@ -178,7 +178,7 @@ var Drawerr = function () {
     value: function bodyClick(e) {
       if (this.toggleBtn.contains(e.target)) return;
 
-      if (!this.drawerr.contains(e.target) && document.querySelector(options.drawerrSelector).classList.contains(this.settings.drawerOpenClass)) {
+      if (!this.drawerr.contains(e.target) && document.querySelector(options.drawerr).classList.contains(this.settings.drawerOpenClass)) {
         this.toggleDrawer();
       }
     }
@@ -250,6 +250,10 @@ var multilevelSettings = {
   hiddenClass: 'hidden'
 };
 
+var multilevelOptions = {
+  navigationText: 'MENU'
+};
+
 var DrawerrMultilevel = function (_Drawerr) {
   _inherits(DrawerrMultilevel, _Drawerr);
 
@@ -257,6 +261,8 @@ var DrawerrMultilevel = function (_Drawerr) {
     _classCallCheck(this, DrawerrMultilevel);
 
     var _this = _possibleConstructorReturn(this, (DrawerrMultilevel.__proto__ || Object.getPrototypeOf(DrawerrMultilevel)).call(this, args));
+
+    _this.options.navigationText = args.navigationText || multilevelOptions.navigationText;
 
     _this.multilevelSettings = multilevelSettings;
     _this.drawerr.classList.add('drawerr-multilevel');
@@ -275,6 +281,7 @@ var DrawerrMultilevel = function (_Drawerr) {
     // Events
     _this.bindLinks();
     _this.navigationOnClick();
+    _this.bindOnClose();
     return _this;
   }
 
@@ -289,7 +296,7 @@ var DrawerrMultilevel = function (_Drawerr) {
         this.navigationContainer = document.querySelector("." + this.multilevelSettings.navigationContainerClass);
       }
 
-      this.navigationContainer.insertAdjacentHTML("afterbegin", " <a class=\"" + this.multilevelSettings.navigationTextClass + "\" href=\"#\"><span class=\"" + this.multilevelSettings.navigationTextClass + "__icon " + this.multilevelSettings.hidden + "\"></span><span class=\"" + this.multilevelSettings.navigationTextClass + "__text\">Menu</span></a>");
+      this.navigationContainer.insertAdjacentHTML("afterbegin", " <a class=\"" + this.multilevelSettings.navigationTextClass + "\" href=\"#\"><span class=\"" + this.multilevelSettings.navigationTextClass + "__icon " + this.multilevelSettings.hiddenClass + "\"></span><span class=\"" + this.multilevelSettings.navigationTextClass + "__text\">" + this.options.navigationText + "</span></a>");
     }
   }, {
     key: "addClassToSubmenus",
@@ -301,21 +308,40 @@ var DrawerrMultilevel = function (_Drawerr) {
       });
     }
   }, {
+    key: "reset",
+    value: function reset() {
+      var _this3 = this;
+
+      setTimeout(function () {
+        Array.prototype.forEach.call(_this3.multilevelSettings.submenus, function (menu) {
+          menu.classList.remove(_this3.multilevelSettings.submenuActiveClass);
+        });
+
+        _this3.setNavigationText(_this3.options.navigationText);
+        _this3.hideShowNavigationIcon();
+      }, 300);
+    }
+  }, {
+    key: "bindOnClose",
+    value: function bindOnClose() {
+      document.addEventListener('drawerr-close', this.reset.bind(this));
+    }
+  }, {
     key: "bindLinks",
     value: function bindLinks() {
-      var _this3 = this;
+      var _this4 = this;
 
       var links = this.drawerr.querySelectorAll("ul a");
 
-      if (links.length > 0) {
+      if (links.length) {
         Array.prototype.forEach.call(links, function (link) {
           parent = link.parentElement;
 
-          if (parent.children.item(parent.children.length - 1).classList.contains(_this3.multilevelSettings.submenuClass)) {
-            link.classList.add(_this3.multilevelSettings.hasSubmenuClass);
+          if (parent.children.item(parent.children.length - 1).classList.contains(_this4.multilevelSettings.submenuClass)) {
+            link.classList.add(_this4.multilevelSettings.hasSubmenuClass);
           }
 
-          link.addEventListener("click", _this3.linkOnClick.bind(_this3));
+          link.addEventListener("click", _this4.linkOnClick.bind(_this4));
         });
       }
     }
@@ -338,21 +364,19 @@ var DrawerrMultilevel = function (_Drawerr) {
   }, {
     key: "navigationOnClick",
     value: function navigationOnClick() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.navigation.addEventListener("click", function () {
-        if (!_this4.multilevelSettings.activeSubmenu) {
-          return;
-        }
+        if (!_this5.multilevelSettings.activeSubmenu) return;
 
-        _this4.multilevelSettings.activeSubmenu.classList.remove(_this4.multilevelSettings.submenuActiveClass);
-        _this4.multilevelSettings.activeSubmenu = _this4.multilevelSettings.activeSubmenu.parentElement.parentElement;
+        _this5.multilevelSettings.activeSubmenu.classList.remove(_this5.multilevelSettings.submenuActiveClass);
+        _this5.multilevelSettings.activeSubmenu = _this5.multilevelSettings.activeSubmenu.parentElement.parentElement;
 
-        if (!_this4.multilevelSettings.activeSubmenu.classList.contains("drawerr-submenu--active")) {
-          _this4.hideShowNavigationIcon(_this4.multilevelSettings.hiddenClass);
-          _this4.setNavigationText("Menu");
+        if (!_this5.multilevelSettings.activeSubmenu.classList.contains("drawerr-submenu--active")) {
+          _this5.hideShowNavigationIcon(_this5.multilevelSettings.hiddenClass);
+          _this5.setNavigationText(_this5.options.navigationText);
         } else {
-          _this4.setNavigationText(_this4.multilevelSettings.activeSubmenu.parentElement.querySelector("a").textContent);
+          _this5.setNavigationText(_this5.multilevelSettings.activeSubmenu.parentElement.querySelector("a").textContent);
         }
       });
     }
