@@ -173,13 +173,23 @@
   transition: transform 0.4s ease, -webkit-transform 0.4s ease;
   background: #f4f7f6; }
 
-.drawerr-multilevel .drawerr-item-has-submenu:after {
+.drawerr-multilevel .drawerr-item-has-submenu:after, .drawerr-multilevel .drawerr-submenu-link:after {
   position: absolute;
   right: 1.2rem;
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
   border-left: 6px solid #333;
   content: ""; }
+
+.drawerr-multilevel .drawer-item-hashlink {
+  display: flex; }
+  .drawerr-multilevel .drawer-item-hashlink a:first-child {
+    flex-grow: 2; }
+    .drawerr-multilevel .drawer-item-hashlink a:first-child:after {
+      display: none; }
+  .drawerr-multilevel .drawer-item-hashlink .drawerr-item-has-submenu, .drawerr-multilevel .drawer-item-hashlink .drawerr-submenu-link {
+    min-width: 65px;
+    border-left: 1px solid #E6EAEA; }
 
 .drawerr-multilevel .drawerr-submenu--active {
   z-index: 3;

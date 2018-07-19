@@ -235,6 +235,26 @@
     }
   }
 
+  .drawer-item-hashlink {
+    display:flex;
+
+    a:first-child {
+      flex-grow:2;
+      &:after {
+        display:none;
+      }
+    }
+
+    .drawerr-item-has-submenu {
+      min-width:65px;
+      border-left:1px solid $drawerr-item-border-bottom-color;
+    }
+  }
+
+  .drawerr-submenu-link {
+    @extend .drawerr-item-has-submenu;
+  }
+
   .drawerr-submenu--active {
     z-index: 3;
     transform: translate3d(-100%, 0px, 0px);
