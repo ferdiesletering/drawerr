@@ -195,36 +195,7 @@ class Drawerr {
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = function(originalModule) {
-	if(!originalModule.webpackPolyfill) {
-		var module = Object.create(originalModule);
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		Object.defineProperty(module, "exports", {
-			enumerable: true,
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
+/* 1 */,
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -349,10 +320,9 @@ class DrawerrMultilevel extends __WEBPACK_IMPORTED_MODULE_0__drawerr__["a" /* de
 	 */
 	addSubmenuLink(link) {
 
-		link.parentElement.classList.add(this.multilevelSettings.noHashLinkClass);
-
 		const submenuLink = document.createElement('a');
-		console.log(submenuLink);
+
+		link.parentElement.classList.add(this.multilevelSettings.noHashLinkClass);
 		submenuLink.setAttribute('href', '#');
 		submenuLink.setAttribute('class', this.multilevelSettings.subMenuLinkClass);
 
@@ -450,7 +420,7 @@ class DrawerrMultilevel extends __WEBPACK_IMPORTED_MODULE_0__drawerr__["a" /* de
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__drawerr__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__drawerr__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__drawerrMultilevel__ = __webpack_require__(2);
 /**
  * We need this main function to correctly exports drawerr
@@ -462,9 +432,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 window.drawerr = __WEBPACK_IMPORTED_MODULE_0__drawerr__["a" /* default */];
 window.drawerrMultilevel = __WEBPACK_IMPORTED_MODULE_1__drawerrMultilevel__["a" /* default */];
 
-module.exports = __WEBPACK_IMPORTED_MODULE_0__drawerr__["a" /* default */];
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)(module)))
 
 /***/ })
 /******/ ]);

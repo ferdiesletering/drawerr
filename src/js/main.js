@@ -7,5 +7,3 @@ import DrawerrMultilevel from './drawerrMultilevel';
 
 window.drawerr = Drawerr;
 window.drawerrMultilevel = DrawerrMultilevel;
-
-module.exports = Drawerr;

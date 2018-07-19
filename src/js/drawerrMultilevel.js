@@ -117,10 +117,9 @@ export default class DrawerrMultilevel extends Drawerr {
 	 */
 	addSubmenuLink(link) {
 
-		link.parentElement.classList.add(this.multilevelSettings.noHashLinkClass);
-
 		const submenuLink = document.createElement('a');
-		console.log(submenuLink);
+
+		link.parentElement.classList.add(this.multilevelSettings.noHashLinkClass);
 		submenuLink.setAttribute('href', '#');
 		submenuLink.setAttribute('class', this.multilevelSettings.subMenuLinkClass);
 
