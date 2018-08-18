@@ -64,7 +64,7 @@ var drawerr =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -82,81 +82,77 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var settings = {
+  bodyNoScrollClass: "drawerr-no-scroll",
+  drawerOpenClass: "drawerr--open",
+  toggleBtnActiveClass: "drawerr-btn--active",
+  slideFromClass: "drawerr-slide-from-right"
+};
+
+var options = {
+  btnText: "MENU",
+  drawerr: "#drawerr",
+  navbar: "header",
+  toggleBtn: ".toggleDrawerr",
+  slideFrom: "left"
+};
+
 var Drawerr = function () {
   function Drawerr() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
     _classCallCheck(this, Drawerr);
 
-    // Domclasses
-    this.bodyNoScrollClass = 'drawerr-no-scroll';
-    this.drawerOpenClass = 'drawerr--open';
-    this.toggleBtnActiveClass = 'drawerr-btn--active';
-    this.slideFromClass = 'drawerr-slide-from-right';
-    this.options = {
-      btnText: 'MENU',
-      drawerr: '#drawerr',
-      navbar: 'header',
-      toggleBtn: '.toggleDrawerr',
-      slideFrom: 'left'
+    this.settings = settings;
+    this.options = Object.assign(options, args);
 
-      //  Events
-    };this.openEvent = new Event('drawerr-open');
-    this.closeEvent = new Event('drawerr-close');
+    // Events
+    this.openEvent = new Event("drawerr-open");
+    this.closeEvent = new Event("drawerr-close");
+
+    // Dom elements
+    this.body = document.querySelector("body");
+    this.drawerr = document.querySelector(this.options.drawerr);
+    this.toggleBtn = document.querySelector(this.options.toggleBtn);
+    this.navbar = document.querySelector(this.options.navbar);
+
+    this.beforeVisible();
+
+    // Drawerr now visible
+    this.drawerr.classList.remove("drawerr--init");
+    this.drawerr.classList.add("drawerr");
+    this.toggleBtn.classList.add("drawerr-btn");
+
+    this.events();
   }
 
   _createClass(Drawerr, [{
-    key: 'init',
-    value: function init() {
-      var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      var options = Object.assign(this.options, args);
-
-      this.drawerrSelector = options.drawerr;
-      this.toggleBtn = options.toggleBtn;
-      this.navbar = options.navbar;
-      this.slideFrom = options.slideFrom;
-      this.btnText = options.btnText;
-
-      // Dom elements
-      this.body = document.querySelector('body');
-      this.drawerr = document.querySelector(this.drawerrSelector);
-      this.toggleBtn = document.querySelector(this.toggleBtn);
-      this.navbar = document.querySelector(this.navbar);
-
-      this.beforeVisible();
-
-      // Drawerr now visible
-      this.drawerr.classList.remove('drawerr--init');
-      this.drawerr.classList.add('drawerr');
-      this.toggleBtn.classList.add('drawerr-btn');
-      this.events();
-    }
-  }, {
-    key: 'beforeVisible',
+    key: "beforeVisible",
     value: function beforeVisible() {
       this.setSlideFromDirection();
       this.drawerrOffsetTop();
-      this.appendBtnText();
+      this.insertHamburgerText();
     }
   }, {
-    key: 'drawerrOffsetTop',
+    key: "drawerrOffsetTop",
     value: function drawerrOffsetTop() {
-      this.drawerr.style.top = this.navbar.offsetHeight + 'px';
+      this.drawerr.style.top = options.navbar.offsetHeight + "px";
     }
   }, {
-    key: 'setSlideFromDirection',
+    key: "setSlideFromDirection",
     value: function setSlideFromDirection() {
-      if (this.slideFrom === 'right') this.drawerr.classList.add(this.slideFromClass);
+      if (options.slideFrom === "right") this.drawerr.classList.add(this.settings.slideFromClass);
     }
   }, {
-    key: 'events',
+    key: "events",
     value: function events() {
       var _this = this;
 
-      this.toggleBtn.addEventListener('click', function () {
+      this.toggleBtn.addEventListener("click", function () {
         _this.toggleDrawer();
       });
 
-      document.addEventListener('click', function (e) {
+      document.addEventListener("click", function (e) {
         _this.bodyClick(e);
       });
 
@@ -165,38 +161,38 @@ var Drawerr = function () {
       };
     }
   }, {
-    key: 'toggleDrawer',
+    key: "toggleDrawer",
     value: function toggleDrawer() {
-      this.addOrRemoveClass(this.body, this.bodyNoScrollClass);
-      this.addOrRemoveClass(this.drawerr, this.drawerOpenClass);
-      this.addOrRemoveClass(this.toggleBtn, this.toggleBtnActiveClass);
+      this.addOrRemoveClass(this.body, this.settings.bodyNoScrollClass);
+      this.addOrRemoveClass(this.drawerr, this.settings.drawerOpenClass);
+      this.addOrRemoveClass(this.toggleBtn, this.settings.toggleBtnActiveClass);
       this.dispatchEvents();
     }
   }, {
-    key: 'onResize',
+    key: "onResize",
     value: function onResize() {
       this.drawerrOffsetTop();
     }
   }, {
-    key: 'bodyClick',
+    key: "bodyClick",
     value: function bodyClick(e) {
       if (this.toggleBtn.contains(e.target)) return;
 
-      if (!this.drawerr.contains(e.target) && document.querySelector(this.drawerrSelector).classList.contains(this.drawerOpenClass)) {
+      if (!this.drawerr.contains(e.target) && document.querySelector(options.drawerr).classList.contains(this.settings.drawerOpenClass)) {
         this.toggleDrawer();
       }
     }
   }, {
-    key: 'dispatchEvents',
+    key: "dispatchEvents",
     value: function dispatchEvents() {
-      if (this.drawerr.classList.contains(this.drawerOpenClass)) {
+      if (this.drawerr.classList.contains(this.settings.drawerOpenClass)) {
         document.dispatchEvent(this.openEvent);
       } else {
         document.dispatchEvent(this.closeEvent);
       }
     }
   }, {
-    key: 'addOrRemoveClass',
+    key: "addOrRemoveClass",
     value: function addOrRemoveClass(el, addClass) {
       if (el.classList.contains(addClass)) {
         return el.classList.remove(addClass);
@@ -204,12 +200,12 @@ var Drawerr = function () {
       el.classList.add(addClass);
     }
   }, {
-    key: 'appendBtnText',
-    value: function appendBtnText() {
-      if (this.btnText.length === 0) return;
+    key: "insertHamburgerText",
+    value: function insertHamburgerText() {
+      if (options.btnText.length === 0) return;
 
-      this.toggleBtn.classList.add('drawerr-btn--has-menu-text');
-      this.toggleBtn.insertAdjacentHTML('beforeend', '<span class="drawerr-btn__menu-text">' + this.btnText + '</span>');
+      this.toggleBtn.classList.add("drawerr-btn--has-menu-text");
+      this.toggleBtn.insertAdjacentHTML("beforeend", "<span class=\"drawerr-btn__menu-text\">" + options.btnText + "</span>");
     }
   }]);
 
@@ -225,19 +221,267 @@ exports.default = Drawerr;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _drawerr = __webpack_require__(0);
 
 var _drawerr2 = _interopRequireDefault(_drawerr);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-window.drawerr = _drawerr2.default; /**
-                                     * We need this main function to correctly exports drawerr
-                                     * see http://siawyoung.com/coding/javascript/exporting-es6-modules-as-single-scripts-with-webpack.html
-                                     */
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var multilevelSettings = {
+	activeSubmenu: false,
+	submenus: false,
+	navigationTextClass: "drawerr-navigation",
+	hasSubmenuClass: "drawerr-item-has-submenu",
+	submenuClass: "drawerr-submenu",
+	submenuActiveClass: "drawerr-submenu--active",
+	navigationContainerClass: "drawerr-navigation-container",
+	hiddenClass: 'hidden',
+	noHashLinkClass: 'drawer-item-hashlink',
+	subMenuLinkClass: 'drawerr-submenu-link'
+};
+
+var multilevelOptions = {
+	navigationText: 'MENU'
+};
+
+var DrawerrMultilevel = function (_Drawerr) {
+	_inherits(DrawerrMultilevel, _Drawerr);
+
+	function DrawerrMultilevel(args) {
+		_classCallCheck(this, DrawerrMultilevel);
+
+		var _this = _possibleConstructorReturn(this, (DrawerrMultilevel.__proto__ || Object.getPrototypeOf(DrawerrMultilevel)).call(this, args));
+
+		_this.options.navigationText = args.navigationText || multilevelOptions.navigationText;
+
+		_this.multilevelSettings = multilevelSettings;
+		_this.drawerr.classList.add('drawerr-multilevel');
+
+		// Setup navigation
+		_this.insertNavigation();
+		_this.navigation = document.querySelector("." + _this.multilevelSettings.navigationTextClass);
+
+		_this.navigationText = _this.navigation.querySelector("." + _this.multilevelSettings.navigationTextClass + "__text");
+		_this.navigationIcon = document.querySelector("." + _this.multilevelSettings.navigationTextClass + "__icon");
+
+		// Submenu's
+		_this.multilevelSettings.submenus = _this.drawerr.querySelectorAll("ul li ul");
+		_this.addClassToSubmenus();
+
+		// Events
+		_this.bindLinks();
+		_this.navigationOnClick();
+		_this.bindOnClose();
+		return _this;
+	}
+
+	_createClass(DrawerrMultilevel, [{
+		key: "insertNavigation",
+		value: function insertNavigation() {
+			this.navigationContainer = document.querySelector("." + this.multilevelSettings.navigationContainerClass);
+
+			if (this.navigationContainer === null) {
+				this.navigationContainer = this.drawerr.insertAdjacentHTML("afterbegin", "<div class=\"" + this.multilevelSettings.navigationContainerClass + "\"></div>");
+
+				this.navigationContainer = document.querySelector("." + this.multilevelSettings.navigationContainerClass);
+			}
+
+			this.navigationContainer.insertAdjacentHTML("afterbegin", " <a class=\"" + this.multilevelSettings.navigationTextClass + "\" href=\"#\"><span class=\"" + this.multilevelSettings.navigationTextClass + "__icon " + this.multilevelSettings.hiddenClass + "\"></span><span class=\"" + this.multilevelSettings.navigationTextClass + "__text\">" + this.options.navigationText + "</span></a>");
+		}
+	}, {
+		key: "addClassToSubmenus",
+		value: function addClassToSubmenus() {
+			var _this2 = this;
+
+			Array.prototype.forEach.call(this.multilevelSettings.submenus, function (menu) {
+				menu.classList.add(_this2.multilevelSettings.submenuClass);
+			});
+		}
+	}, {
+		key: "reset",
+		value: function reset() {
+			var _this3 = this;
+
+			setTimeout(function () {
+				Array.prototype.forEach.call(_this3.multilevelSettings.submenus, function (menu) {
+					menu.classList.remove(_this3.multilevelSettings.submenuActiveClass);
+				});
+
+				_this3.setNavigationText(_this3.options.navigationText);
+				_this3.hideShowNavigationIcon();
+			}, 300);
+		}
+	}, {
+		key: "bindOnClose",
+		value: function bindOnClose() {
+			document.addEventListener('drawerr-close', this.reset.bind(this));
+		}
+	}, {
+		key: "bindLinks",
+		value: function bindLinks() {
+			var _this4 = this;
+
+			var links = this.drawerr.querySelectorAll("ul a");
+
+			if (links.length) {
+				Array.prototype.forEach.call(links, function (link) {
+					var parent = link.parentElement;
+
+					if (parent.children.item(parent.children.length - 1).classList.contains(_this4.multilevelSettings.submenuClass)) {
+						link.classList.add(_this4.multilevelSettings.hasSubmenuClass);
+
+						if (link.getAttribute('href') !== '#') {
+							_this4.addSubmenuLink(link);
+						}
+					}
+
+					link.addEventListener("click", _this4.linkOnClick.bind(_this4));
+				});
+			}
+		}
+
+		/**
+   * Add submenu link to existing link so the original and the submenu can be clicked
+   * 
+   * @param {*} link 
+   */
+
+	}, {
+		key: "addSubmenuLink",
+		value: function addSubmenuLink(link) {
+
+			var submenuLink = document.createElement('a');
+
+			link.parentElement.classList.add(this.multilevelSettings.noHashLinkClass);
+			submenuLink.setAttribute('href', '#');
+			submenuLink.setAttribute('class', this.multilevelSettings.subMenuLinkClass);
+
+			link.insertAdjacentElement("afterend", submenuLink);
+
+			submenuLink.addEventListener("click", this.linkOnClick.bind(this));
+		}
+
+		/**
+   * 
+   * @param {*} e 
+   */
+
+	}, {
+		key: "linkOnClick",
+		value: function linkOnClick(e) {
+
+			var link = e.target;
+			var submenu = link.parentElement.querySelector("." + this.multilevelSettings.submenuClass);
+			var submenuLink = false;
+			var breadcrumbText = '';
+
+			if (link.classList.contains(this.multilevelSettings.subMenuLinkClass)) {
+				// Submenu item has no link but we need to set the breadcrumb text
+				submenuLink = link.previousSibling;
+			}
+
+			if (submenu !== null) {
+
+				if (!submenuLink) {
+					breadcrumbText = link.textContent;
+
+					// Go to the clicked link url instead of navigating the menu
+					if (link.getAttribute('href') !== '#') {
+						return false;
+					}
+				} else {
+					breadcrumbText = submenuLink.textContent;
+				}
+
+				submenu.classList.add(this.multilevelSettings.submenuActiveClass);
+				this.setNavigationText(breadcrumbText);
+				this.multilevelSettings.activeSubmenu = submenu;
+				this.hideShowNavigationIcon("show");
+			}
+		}
+	}, {
+		key: "navigationOnClick",
+		value: function navigationOnClick() {
+			var _this5 = this;
+
+			this.navigation.addEventListener("click", function () {
+				if (!_this5.multilevelSettings.activeSubmenu) return;
+
+				_this5.multilevelSettings.activeSubmenu.classList.remove(_this5.multilevelSettings.submenuActiveClass);
+				_this5.multilevelSettings.activeSubmenu = _this5.multilevelSettings.activeSubmenu.parentElement.parentElement;
+
+				if (!_this5.multilevelSettings.activeSubmenu.classList.contains("drawerr-submenu--active")) {
+					_this5.hideShowNavigationIcon(_this5.multilevelSettings.hiddenClass);
+					_this5.setNavigationText(_this5.options.navigationText);
+				} else {
+					_this5.setNavigationText(_this5.multilevelSettings.activeSubmenu.parentElement.querySelector("a").textContent);
+				}
+			});
+		}
+
+		/**
+   * 
+   * @param {*} text 
+   */
+
+	}, {
+		key: "setNavigationText",
+		value: function setNavigationText(text) {
+			this.navigationText.textContent = text;
+		}
+
+		/**
+   * 
+   * @param {*} action 
+   */
+
+	}, {
+		key: "hideShowNavigationIcon",
+		value: function hideShowNavigationIcon(action) {
+			action == "show" ? this.navigationIcon.classList.remove(this.multilevelSettings.hiddenClass) : this.navigationIcon.classList.add(this.multilevelSettings.hiddenClass);
+		}
+	}]);
+
+	return DrawerrMultilevel;
+}(_drawerr2.default);
+
+exports.default = DrawerrMultilevel;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
-module.exports = _drawerr2.default;
+var _drawerr = __webpack_require__(0);
+
+var _drawerr2 = _interopRequireDefault(_drawerr);
+
+var _drawerrMultilevel = __webpack_require__(1);
+
+var _drawerrMultilevel2 = _interopRequireDefault(_drawerrMultilevel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * We need this main function to correctly exports drawerr
+ * see http://siawyoung.com/coding/javascript/exporting-es6-modules-as-single-scripts-with-webpack.html
+ */
+window.drawerr = _drawerr2.default;
+window.drawerrMultilevel = _drawerrMultilevel2.default;
 
 /***/ })
 /******/ ]);

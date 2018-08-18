@@ -18,6 +18,9 @@ Drawerr supports multi-level navigation so it's not hiding menu items( good for 
 
 ## Browser support
  Tested on real browsers with [BrowserStack](https://www.browserstack.com).
+
+### IE11 and below
+Use a service like [polyfill.io](https://polyfill.io/v2/docs/examples) 
  
 ![logo-01 1](https://user-images.githubusercontent.com/6705443/28997491-4a171510-7a16-11e7-88b7-d34f4477a1b3.png)
 
