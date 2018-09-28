@@ -94,7 +94,8 @@ var options = {
   drawerr: "#drawerr",
   navbar: "header",
   toggleBtn: ".toggleDrawerr",
-  slideFrom: "left"
+  slideFrom: "left",
+  preventBodyOnClick: false
 };
 
 var Drawerr = function () {
@@ -177,6 +178,8 @@ var Drawerr = function () {
     key: "bodyClick",
     value: function bodyClick(e) {
       if (this.toggleBtn.contains(e.target)) return;
+
+      if (this.options.preventBodyOnClick) return;
 
       if (!this.drawerr.contains(e.target) && document.querySelector(options.drawerr).classList.contains(this.settings.drawerOpenClass)) {
         this.toggleDrawer();

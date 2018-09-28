@@ -10,7 +10,8 @@ const options = {
   drawerr: "#drawerr",
   navbar: "header",
   toggleBtn: ".toggleDrawerr",
-  slideFrom: "left"
+  slideFrom: "left",
+  preventBodyOnClick: false
 }
 
 export default class Drawerr {
@@ -80,7 +81,9 @@ export default class Drawerr {
   }
 
   bodyClick(e) {
-    if (this.toggleBtn.contains(e.target)) return;
+    if ( this.toggleBtn.contains(e.target)) return;
+
+    if ( this.options.preventBodyOnClick) return;
 
     if (
       !this.drawerr.contains(e.target) &&
