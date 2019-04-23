@@ -35,11 +35,10 @@ export default class Drawerr {
     this.drawerr.classList.remove("drawerr--init");
     this.drawerr.classList.add("drawerr");
     this.toggleBtn.classList.add("drawerr-btn");
-    
-    this.events();
 
+    this.events();
   }
-  
+
   beforeVisible() {
     this.setSlideFromDirection();
     this.drawerrOffsetTop();
@@ -73,6 +72,7 @@ export default class Drawerr {
     this.addOrRemoveClass(this.body, this.settings.bodyNoScrollClass);
     this.addOrRemoveClass(this.drawerr, this.settings.drawerOpenClass );
     this.addOrRemoveClass(this.toggleBtn, this.settings.toggleBtnActiveClass);
+
     this.dispatchEvents();
   }
 
