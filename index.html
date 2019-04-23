@@ -71,11 +71,11 @@
 <body>
 <header>
     <ul>
-        <div class="toggleDrawerr">
+        <button class="toggleDrawerr">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
         <li class="logo" style="font-size:2rem;">
             Drawerr
         </li>
@@ -181,7 +181,8 @@
 <script src="dist/drawerr.js"></script>
 <script>
     const x = new drawerrMultilevel({
-        drawerr: '#drawerr'
+        drawerr: '#drawerr',
+        //showOnLoad: true,
     });
 </script>
 </body>

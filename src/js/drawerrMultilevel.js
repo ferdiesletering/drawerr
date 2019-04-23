@@ -8,9 +8,11 @@ const multilevelSettings = {
 	submenuClass: "drawerr-submenu",
 	submenuActiveClass: "drawerr-submenu--active",
 	navigationContainerClass: "drawerr-navigation-container",
-	hiddenClass: 'hidden',
+    hiddenClass: 'hidden',
+    showOnLoad: false,
 	noHashLinkClass: 'drawer-item-hashlink',
-	subMenuLinkClass: 'drawerr-submenu-link'
+    subMenuLinkClass: 'drawerr-submenu-link',
+    toggleBtnAriaLabel: 'navigation'
 };
 
 const multilevelOptions = {
@@ -44,8 +46,27 @@ export default class DrawerrMultilevel extends Drawerr {
 		// Events
 		this.bindLinks();
 		this.navigationOnClick();
-		this.bindOnClose();
-	}
+        this.bindOnClose();
+
+        this.toggleBtn.setAttribute('aria-expanded', 'false');
+        this.toggleBtn.setAttribute('aria-label', this.multilevelSettings.toggleBtnAriaLabel);
+
+        if(this.options.showOnLoad) {
+            this.toggleDrawer();
+        }
+    }
+
+    toggleDrawer() {
+        super.toggleDrawer();
+
+        if( this.toggleBtn.classList.contains( 'drawerr-btn--active' ) ) {
+            this.toggleBtn.setAttribute('aria-expanded', 'true');
+            this.drawerr.querySelector('ul a').focus();
+        } else {
+            this.toggleBtn.setAttribute('aria-expanded', 'false');
+            this.toggleBtn.focus();
+        }
+    }
 
 	insertNavigation() {
 		this.navigationContainer = document.querySelector(`.${this.multilevelSettings.navigationContainerClass}`);
@@ -56,12 +77,12 @@ export default class DrawerrMultilevel extends Drawerr {
 				`<div class="${this.multilevelSettings.navigationContainerClass}"></div>`
 			);
 
-			this.navigationContainer = document.querySelector(`.${this.multilevelSettings.navigationContainerClass}`);
+            this.navigationContainer = document.querySelector(`.${this.multilevelSettings.navigationContainerClass}`);
 		}
 
 		this.navigationContainer.insertAdjacentHTML(
 			"afterbegin",
-			` <a class="${this.multilevelSettings.navigationTextClass}" href="#"><span class="${
+			` <a aria-hidden="true" class="${this.multilevelSettings.navigationTextClass}" href="#"><span class="${
       this.multilevelSettings.navigationTextClass
       }__icon ${this.multilevelSettings.hiddenClass}"></span><span class="${
       this.multilevelSettings.navigationTextClass
@@ -87,7 +108,14 @@ export default class DrawerrMultilevel extends Drawerr {
 	}
 
 	bindOnClose() {
-		document.addEventListener('drawerr-close', this.reset.bind(this));
+        document.addEventListener('drawerr-close', this.reset.bind(this));
+        document.addEventListener('keydown', (e) => {
+            if(e.keyCode == 27) {
+                if( this.drawerr.classList.contains('drawerr--open')) {
+                    this.toggleDrawer();
+                }
+            }
+        });
 	}
 
 	bindLinks() {
@@ -112,8 +140,8 @@ export default class DrawerrMultilevel extends Drawerr {
 
 	/**
 	 * Add submenu link to existing link so the original and the submenu can be clicked
-	 * 
-	 * @param {*} link 
+	 *
+	 * @param {*} link
 	 */
 	addSubmenuLink(link) {
 
@@ -121,7 +149,7 @@ export default class DrawerrMultilevel extends Drawerr {
 
 		link.parentElement.classList.add(this.multilevelSettings.noHashLinkClass);
 		submenuLink.setAttribute('href', '#');
-		submenuLink.setAttribute('class', this.multilevelSettings.subMenuLinkClass);
+        submenuLink.setAttribute('class', this.multilevelSettings.subMenuLinkClass);
 
 		link.insertAdjacentElement(
 			"afterend",
@@ -132,8 +160,8 @@ export default class DrawerrMultilevel extends Drawerr {
 	}
 
 	/**
-	 * 
-	 * @param {*} e 
+	 *
+	 * @param {*} e
 	 */
 	linkOnClick(e) {
 
@@ -189,16 +217,16 @@ export default class DrawerrMultilevel extends Drawerr {
 	}
 
   /**
-   * 
-   * @param {*} text 
+   *
+   * @param {*} text
    */
 	setNavigationText(text) {
 		this.navigationText.textContent = text;
 	}
 
   /**
-   * 
-   * @param {*} action 
+   *
+   * @param {*} action
    */
 	hideShowNavigationIcon(action) {
 		action == "show" ?
