@@ -14,6 +14,10 @@
   background: $drawerr-bg;
   box-shadow: 1px 0px $drawerr-shadow-depth 0px rgba(50, 50, 50, 0.75);
 
+  &-no-scroll {
+    height:100vh;
+  }
+
   &::-webkit-scrollbar {
     width: $drawerr-scrollbar;
     height: $drawerr-scrollbar;
