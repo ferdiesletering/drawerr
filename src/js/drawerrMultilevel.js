@@ -192,6 +192,8 @@ export default class DrawerrMultilevel extends Drawerr {
     let submenuLink = false
     let breadcrumbText = ''
 
+    this.navigationContainer.scrollIntoView()
+
     link.classList.add(this.linkActiveClass)
 
     if (link.classList.contains(this.multilevelSettings.subMenuLinkClass)) {
@@ -219,7 +221,9 @@ export default class DrawerrMultilevel extends Drawerr {
   }
 
   navigationOnClick () {
-    this.navigation.addEventListener('click', () => {
+    this.navigation.addEventListener('click', (e) => {
+      e.preventDefault()
+
       if (!this.multilevelSettings.activeSubmenu) return
 
       if (this.links.length > 0) {
