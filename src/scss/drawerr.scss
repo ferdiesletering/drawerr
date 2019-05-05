@@ -166,13 +166,16 @@
   ul {
     position:relative;
     height:calc(100% - #{$drawerr-navigation-height});
+
+    li {
+      background: $drawerr-bg;
+    }
   }
 
   .drawerr-navigation {
     display: flex;
     align-items: center;
     height:$drawerr-navigation-height;
-    //padding: ($drawerr-spacer / 2) $drawerr-spacer;
     padding:$drawerr-padding;
     background: $drawerr-navigation-bg;
     color: $drawerr-navigation-color;
@@ -214,6 +217,10 @@
   .drawerr-navigation__text {
     display: block;
     color: $drawerr-navigation-color;
+  }
+
+  a.drawerr-link--active {
+    display:none;
   }
 
   .drawerr-submenu {
@@ -262,4 +269,8 @@
     z-index: 3;
     transform: translate3d(-100%, 0px, 0px);
   }
+}
+
+.ferdie {
+  display:none !important;
 }

@@ -3,6 +3,7 @@ import Drawerr from './drawerr'
 const multilevelSettings = {
   activeSubmenu: false,
   submenus: false,
+  links: false,
   navigationTextClass: 'drawerr-navigation',
   hasSubmenuClass: 'drawerr-item-has-submenu',
   submenuClass: 'drawerr-submenu',
@@ -29,6 +30,9 @@ export default class DrawerrMultilevel extends Drawerr {
     this.multilevelSettings = multilevelSettings
     this.drawerr.classList.add('drawerr-multilevel')
 
+    // All links inside drawerr
+    this.links = this.drawerr.querySelectorAll('a')
+
     // Setup navigation
     this.insertNavigation()
     this.navigation = document.querySelector(
@@ -41,6 +45,9 @@ export default class DrawerrMultilevel extends Drawerr {
     this.navigationIcon = document.querySelector(
       `.${this.multilevelSettings.navigationTextClass}__icon`
     )
+
+    // Links
+    this.linkActiveClass = 'drawerr-link--active'
 
     // Submenu's
     this.multilevelSettings.submenus = this.drawerr.querySelectorAll(
@@ -165,9 +172,7 @@ export default class DrawerrMultilevel extends Drawerr {
    */
   addSubmenuLink (link) {
     const submenuLink = document.createElement('a')
-
     link.parentElement.classList.add(this.multilevelSettings.noHashLinkClass)
-    submenuLink.setAttribute('href', '#')
     submenuLink.setAttribute('class', this.multilevelSettings.subMenuLinkClass)
 
     link.insertAdjacentElement('afterend', submenuLink)
@@ -186,6 +191,8 @@ export default class DrawerrMultilevel extends Drawerr {
     )
     let submenuLink = false
     let breadcrumbText = ''
+
+    link.classList.add(this.linkActiveClass)
 
     if (link.classList.contains(this.multilevelSettings.subMenuLinkClass)) {
       // Submenu item has no link but we need to set the breadcrumb text
@@ -214,6 +221,12 @@ export default class DrawerrMultilevel extends Drawerr {
   navigationOnClick () {
     this.navigation.addEventListener('click', () => {
       if (!this.multilevelSettings.activeSubmenu) return
+
+      if (this.links.length > 0) {
+        this.links.forEach(link => {
+          link.classList.remove(this.linkActiveClass)
+        })
+      }
 
       this.multilevelSettings.activeSubmenu.classList.remove(
         this.multilevelSettings.submenuActiveClass
