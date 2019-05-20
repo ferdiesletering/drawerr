@@ -83,19 +83,22 @@ export default class DrawerrMultilevel extends Drawerr {
   toggleDrawer () {
     super.toggleDrawer()
 
-    if (!this.tabHandle) {
-      this.tabHandle = maintain.tabFocus({
-        context: this.drawerr
-      })
-    }
-
     if (this.toggleBtn.classList.contains('drawerr-btn--active')) {
       this.toggleBtn.setAttribute('aria-expanded', 'true')
       this.drawerr.querySelector('ul a').focus()
+
+      if (!this.tabHandle) {
+        this.tabHandle = maintain.tabFocus({
+          context: '.drawerr-container'
+        })
+      }
     } else {
+      this.removeActiveClassFromLinks()
       this.toggleBtn.setAttribute('aria-expanded', 'false')
+      this.multilevelSettings.activeSubmenu = false
       this.toggleBtn.focus()
       this.tabHandle.disengage()
+      this.tabHandle = false
     }
   }
 
@@ -119,7 +122,7 @@ export default class DrawerrMultilevel extends Drawerr {
 
     this.navigationContainer.insertAdjacentHTML(
       'afterbegin',
-      ` <a aria-hidden="true" tabIndex="-1" class="${
+      ` <a tabIndex="-1" class="${
         this.multilevelSettings.navigationTextClass
       }" href="#"><span class="${
         this.multilevelSettings.navigationTextClass
@@ -148,10 +151,7 @@ export default class DrawerrMultilevel extends Drawerr {
 
   reset () {
     setTimeout(() => {
-      Array.prototype.forEach.call(this.multilevelSettings.submenus, menu => {
-        menu.classList.remove(this.multilevelSettings.submenuActiveClass)
-      })
-
+      this.removeActiveClassFromSubmenus()
       this.setNavigationText(this.options.navigationText)
       this.hideShowNavigationIcon()
     }, 300)
@@ -247,6 +247,10 @@ export default class DrawerrMultilevel extends Drawerr {
       this.setNavigationText(breadcrumbText)
       this.multilevelSettings.activeSubmenu = submenu
 
+      setTimeout(() => {
+        this.multilevelSettings.activeSubmenu.querySelector('li a').focus()
+      }, 600)
+
       this.hideShowNavigationIcon('show')
     }
   }
@@ -257,11 +261,7 @@ export default class DrawerrMultilevel extends Drawerr {
 
       if (!this.multilevelSettings.activeSubmenu) return
 
-      if (this.links.length > 0) {
-        this.links.forEach(link => {
-          link.classList.remove(this.linkActiveClass)
-        })
-      }
+      this.removeActiveClassFromLinks()
 
       this.multilevelSettings.activeSubmenu.classList.remove(
         this.multilevelSettings.submenuActiveClass
@@ -290,6 +290,22 @@ export default class DrawerrMultilevel extends Drawerr {
     document.querySelector('#js-sr-close-menu').addEventListener('click', () => {
       this.toggleDrawer()
     })
+  }
+
+  removeActiveClassFromLinks () {
+    if (this.links.length > 0) {
+      this.links.forEach(link => {
+        link.classList.remove(this.linkActiveClass)
+      })
+    }
+  }
+
+  removeActiveClassFromSubmenus () {
+    if (this.multilevelSettings.submenus.length > 0) {
+      Array.prototype.forEach.call(this.multilevelSettings.submenus, menu => {
+        menu.classList.remove(this.multilevelSettings.submenuActiveClass)
+      })
+    }
   }
 
   /**

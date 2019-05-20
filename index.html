@@ -108,68 +108,70 @@
 
 </main>
 <nav id="drawerr" class="drawerr--init">
-    <div class="drawerr-navigation-container"></div>
-    <ul>
-        <li>
-            <a href="#">Cloud services</a>
-            <ul>
-                <li>
-                    <a class="active" href="http://www.google.nl">Amazon AWS</a>
-                    <a href="#">Google Cloud</a>
-                </li>
-                <li><a href="#">Dropbox</a></li>
-            </ul>
-        </li>
+	<div class="drawerr-container">
+		<div class="drawerr-navigation-container"></div>
+		<ul>
+			<li>
+				<a href="#">Cloud services</a>
+				<ul>
+					<li>
+						<a class="active" href="http://www.google.nl">Amazon AWS</a>
+						<a href="#">Google Cloud</a>
+					</li>
+					<li><a href="#">Dropbox</a></li>
+				</ul>
+			</li>
 
-        <li>
-            <a href="#">Programming languages</a>
-            <ul>
-                <li>
-                    <a href="#">PHP</a>
-                    <ul>
-                        <li>
-                            <a href="#">Laravel</a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#">C#</a></li>
-                <li><a href="#">Python</a></li>
-                <li><a href="#">C++</a></li>
-                <li><a href="#">Ruby</a></li>
-                <li><a href="#">Java</a></li>
-                <li><a href="#">Rust</a></li>
-                <li><a href="#">Haskell</a></li>
-                <li>
-                    <a href="#">JavaScript</a>
-                    <ul>
-                        <li>
-                            <a href="#">React</a>
-                            <ul>
-                                <li>
-                                    <a href="https://www.google.nl">
-                                        PreReact
-                                    </a>
-                                    <a href="#">
-                                        React Fiber
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Vue</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
+			<li>
+				<a href="#">Programming languages</a>
+				<ul>
+					<li>
+						<a href="#">PHP</a>
+						<ul>
+							<li>
+								<a href="#">Laravel</a>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#">C#</a></li>
+					<li><a href="#">Python</a></li>
+					<li><a href="#">C++</a></li>
+					<li><a href="#">Ruby</a></li>
+					<li><a href="#">Java</a></li>
+					<li><a href="#">Rust</a></li>
+					<li><a href="#">Haskell</a></li>
+					<li>
+						<a href="#">JavaScript</a>
+						<ul>
+							<li>
+								<a href="#">React</a>
+								<ul>
+									<li>
+										<a href="https://www.google.nl">
+											PreReact
+										</a>
+										<a href="#">
+											React Fiber
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Vue</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
 
-        <li>
-            <a href="#">Get in touch</a>
-        </li>
-        <li>
-            <a href="#">About us</a>
-        </li>
-    </ul>
+			<li>
+				<a href="#">Get in touch</a>
+			</li>
+			<li>
+				<a href="#">About us</a>
+			</li>
+		</ul>
+	</div>
 </nav>
 
 <nav id="sidemenu" class="drawerr--init">
@@ -183,7 +185,7 @@
 <script src="dist/drawerr.js"></script>
 <script>
     const x = new drawerrMultilevel({
-        drawerr: '#drawerr' 
+        drawerr: '#drawerr'
     });
 </script>
 </body>
