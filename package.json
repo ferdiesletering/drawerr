@@ -37,6 +37,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
+    "ally.js": "^1.4.1",
     "core-js": "^2.6.5"
   }
 }

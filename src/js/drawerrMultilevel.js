@@ -1,4 +1,5 @@
 import Drawerr from './drawerr'
+import { maintain } from 'ally.js'
 
 const multilevelSettings = {
   activeSubmenu: false,
@@ -10,31 +11,39 @@ const multilevelSettings = {
   submenuActiveClass: 'drawerr-submenu--active',
   navigationContainerClass: 'drawerr-navigation-container',
   hiddenClass: 'hidden',
-  showOnLoad: false,
   noHashLinkClass: 'drawer-item-hashlink',
-  subMenuLinkClass: 'drawerr-submenu-link',
-  toggleBtnAriaLabel: 'navigation'
+  subMenuLinkClass: 'drawerr-submenu-link'
 }
 
 const multilevelOptions = {
-  navigationText: 'MENU'
+  navigationText: 'MENU',
+  toggleBtnAriaLabel: 'navigation',
+  closeMenuBtnLabel: 'Close menu',
+  showOnLoad: false
 }
 
 export default class DrawerrMultilevel extends Drawerr {
   constructor (args) {
     super(args)
 
+    const { navigationText, toggleBtnAriaLabel, closeMenuBtnLabel, showOnLoad } = multilevelOptions
+
     this.options.navigationText =
-      args.navigationText || multilevelOptions.navigationText
+      args.navigationText || navigationText
+    this.options.toggleBtnAriaLabel = args.toggleBtnAriaLabel || toggleBtnAriaLabel
+    this.options.closeMenuBtnLabel = args.closeMenuBtnLabel || closeMenuBtnLabel
+    this.options.showOnLoad = args.showOnLoad || showOnLoad
 
     this.multilevelSettings = multilevelSettings
     this.drawerr.classList.add('drawerr-multilevel')
+    this.tabHandle = false
 
     // All links inside drawerr
     this.links = this.drawerr.querySelectorAll('a')
 
     // Setup navigation
     this.insertNavigation()
+    this.insertCloseMenu()
     this.navigation = document.querySelector(
       `.${this.multilevelSettings.navigationTextClass}`
     )
@@ -63,7 +72,7 @@ export default class DrawerrMultilevel extends Drawerr {
     this.toggleBtn.setAttribute('aria-expanded', 'false')
     this.toggleBtn.setAttribute(
       'aria-label',
-      this.multilevelSettings.toggleBtnAriaLabel
+      this.options.toggleBtnAriaLabel
     )
 
     if (this.options.showOnLoad) {
@@ -74,12 +83,19 @@ export default class DrawerrMultilevel extends Drawerr {
   toggleDrawer () {
     super.toggleDrawer()
 
+    if (!this.tabHandle) {
+      this.tabHandle = maintain.tabFocus({
+        context: this.drawerr
+      })
+    }
+
     if (this.toggleBtn.classList.contains('drawerr-btn--active')) {
       this.toggleBtn.setAttribute('aria-expanded', 'true')
       this.drawerr.querySelector('ul a').focus()
     } else {
       this.toggleBtn.setAttribute('aria-expanded', 'false')
       this.toggleBtn.focus()
+      this.tabHandle.disengage()
     }
   }
 
@@ -103,7 +119,7 @@ export default class DrawerrMultilevel extends Drawerr {
 
     this.navigationContainer.insertAdjacentHTML(
       'afterbegin',
-      ` <a aria-hidden="true" class="${
+      ` <a aria-hidden="true" tabIndex="-1" class="${
         this.multilevelSettings.navigationTextClass
       }" href="#"><span class="${
         this.multilevelSettings.navigationTextClass
@@ -111,6 +127,17 @@ export default class DrawerrMultilevel extends Drawerr {
         this.multilevelSettings.navigationTextClass
       }__text">${this.options.navigationText}</span></a>`
     )
+  }
+
+  insertCloseMenu () {
+    if (this.navigationContainer !== null) {
+      this.navigationContainer.insertAdjacentHTML(
+        'afterbegin',
+        `<button id="js-sr-close-menu" class="sr-only sr-only-focusable">${this.options.closeMenuBtnLabel}</button>`
+      )
+
+      this.closeMenuOnClick()
+    }
   }
 
   addClassToSubmenus () {
@@ -213,9 +240,13 @@ export default class DrawerrMultilevel extends Drawerr {
         breadcrumbText = submenuLink.textContent
       }
 
+      // Make navigation tabable to enable `go back` functionality
+      this.navigation.setAttribute('tabIndex', 0)
+
       submenu.classList.add(this.multilevelSettings.submenuActiveClass)
       this.setNavigationText(breadcrumbText)
       this.multilevelSettings.activeSubmenu = submenu
+
       this.hideShowNavigationIcon('show')
     }
   }
@@ -237,6 +268,7 @@ export default class DrawerrMultilevel extends Drawerr {
       )
       this.multilevelSettings.activeSubmenu = this.multilevelSettings.activeSubmenu.parentElement.parentElement
 
+      // Is submenu active? Otherwise we are at root level
       if (
         !this.multilevelSettings.activeSubmenu.classList.contains(
           'drawerr-submenu--active'
@@ -244,12 +276,19 @@ export default class DrawerrMultilevel extends Drawerr {
       ) {
         this.hideShowNavigationIcon(this.multilevelSettings.hiddenClass)
         this.setNavigationText(this.options.navigationText)
+        this.navigation.setAttribute('tabindex', -1)
       } else {
         this.setNavigationText(
           this.multilevelSettings.activeSubmenu.parentElement.querySelector('a')
             .textContent
         )
       }
+    })
+  }
+
+  closeMenuOnClick () {
+    document.querySelector('#js-sr-close-menu').addEventListener('click', () => {
+      this.toggleDrawer()
     })
   }
 
