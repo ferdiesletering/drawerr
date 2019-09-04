@@ -1,6 +1,6 @@
 {
   "name": "drawerr",
-  "version": "3.0.0-beta.6",
+  "version": "3.0.0-beta.7",
   "author": "Ferdie Sletering",
   "description": "Menu drawer with CSS translate and vanilla js",
   "repository": "https://github.com/s-ferdie/drawerr",
@@ -15,7 +15,8 @@
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "build:esm": "babel --source-maps --out-dir dist/esm src/js",
-    "build": "npm run production && npm run build:esm"
+    "build": "npm run production && npm run build:esm",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
