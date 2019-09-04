@@ -5,14 +5,17 @@
   "description": "Menu drawer with CSS translate and vanilla js",
   "repository": "https://github.com/s-ferdie/drawerr",
   "license": "MIT",
-  "main": "src/js/drawerrMultilevel.js",
+  "main": "dist/drawerr.js",
+  "module": "dist/esm/drawerrMultilevel.js",
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build:esm": "babel --source-maps --out-dir dist/esm src/js",
+    "build": "npm run production && npm run build:esm"
   },
   "husky": {
     "hooks": {
@@ -20,7 +23,9 @@
     }
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.4.3",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-enpv": "^7.4.3",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
