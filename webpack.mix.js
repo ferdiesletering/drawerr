@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -12,5 +12,5 @@ let mix = require('laravel-mix');
  */
 
 mix.js('src/js/index.js', 'dist/drawerr.js')
-    .babel('dist/drawerr.js', 'dist/drawerr.js')
-    .sass('src/scss/drawerr.scss', 'dist/drawerr.css');
+  .babel('dist/drawerr.js', 'dist/drawerr.js')
+  .sass('src/scss/drawerr.scss', 'dist/drawerr.css')

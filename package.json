@@ -1,25 +1,25 @@
 {
   "name": "drawerr",
-  "version": "3.0.0-beta.5",
+  "version": "3.0.0-beta.6",
   "author": "Ferdie Sletering",
   "description": "Menu drawer with CSS translate and vanilla js",
   "repository": "https://github.com/s-ferdie/drawerr",
   "license": "MIT",
-  "main": "src/js/drawerrMultilevel.js",
+  "main": "dist/drawerr.js",
+  "module": "dist/esm/drawerrMultilevel.js",
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run prod && git add ."
-    }
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build:esm": "babel --source-maps --out-dir dist/esm src/js",
+    "build": "npm run production && npm run build:esm"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.4.3",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
@@ -28,7 +28,6 @@
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^1.3.1",
     "laravel-mix": "^4.0.15",
     "resolve-url-loader": "^3.1.0",
     "sass": "^1.19.0",

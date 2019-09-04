@@ -4,4 +4,4 @@ DS_Store
 node_modules
 .idea
 vvv-nginx.conf
-dist/drawer.js
+dist/
